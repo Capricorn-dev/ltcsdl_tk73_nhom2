@@ -1,0 +1,15 @@
+C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.DAL\bin\Debug\netcoreapp3.1\CosmeticWebApp.DAL.deps.json
+C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.DAL\bin\Debug\netcoreapp3.1\CosmeticWebApp.DAL.runtimeconfig.json
+C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.DAL\bin\Debug\netcoreapp3.1\CosmeticWebApp.DAL.runtimeconfig.dev.json
+C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.DAL\bin\Debug\netcoreapp3.1\CosmeticWebApp.DAL.dll
+C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.DAL\bin\Debug\netcoreapp3.1\CosmeticWebApp.DAL.pdb
+C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.DAL\bin\Debug\netcoreapp3.1\CosmeticWebApp.Common.dll
+C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.DAL\bin\Debug\netcoreapp3.1\CosmeticWebApp.Common.pdb
+C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.DAL\obj\Debug\netcoreapp3.1\CosmeticWebApp.DAL.csprojAssemblyReference.cache
+C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.DAL\obj\Debug\netcoreapp3.1\CosmeticWebApp.DAL.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.DAL\obj\Debug\netcoreapp3.1\CosmeticWebApp.DAL.AssemblyInfoInputs.cache
+C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.DAL\obj\Debug\netcoreapp3.1\CosmeticWebApp.DAL.AssemblyInfo.cs
+C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.DAL\obj\Debug\netcoreapp3.1\CosmeticWebApp.DAL.csproj.CopyComplete
+C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.DAL\obj\Debug\netcoreapp3.1\CosmeticWebApp.DAL.dll
+C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.DAL\obj\Debug\netcoreapp3.1\CosmeticWebApp.DAL.pdb
+C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.DAL\obj\Debug\netcoreapp3.1\CosmeticWebApp.DAL.genruntimeconfig.cache

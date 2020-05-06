@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ASUS\\source\\repos\\CosmeticWebApp\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj",
+      "projectUniqueName": "E:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj",
       "projectName": "CosmeticWebApp.Common",
-      "projectPath": "C:\\Users\\ASUS\\source\\repos\\CosmeticWebApp\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj",
+      "projectPath": "E:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ASUS\\source\\repos\\CosmeticWebApp\\CosmeticWebApp.Common\\obj\\",
+      "outputPath": "E:\\LTCSDL\\CosmeticWebApp.Common\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",

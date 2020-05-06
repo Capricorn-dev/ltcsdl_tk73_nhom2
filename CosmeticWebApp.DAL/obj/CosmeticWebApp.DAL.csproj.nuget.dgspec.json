@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\source\\repos\\CosmeticWebApp\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj": {}
+    "E:\\LTCSDL\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\source\\repos\\CosmeticWebApp\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj": {
+    "E:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\source\\repos\\CosmeticWebApp\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj",
+        "projectUniqueName": "E:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj",
         "projectName": "CosmeticWebApp.Common",
-        "projectPath": "C:\\Users\\ASUS\\source\\repos\\CosmeticWebApp\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj",
+        "projectPath": "E:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\source\\repos\\CosmeticWebApp\\CosmeticWebApp.Common\\obj\\",
+        "outputPath": "E:\\LTCSDL\\CosmeticWebApp.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -56,14 +56,14 @@
         }
       }
     },
-    "C:\\Users\\ASUS\\source\\repos\\CosmeticWebApp\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj": {
+    "E:\\LTCSDL\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\source\\repos\\CosmeticWebApp\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj",
+        "projectUniqueName": "E:\\LTCSDL\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj",
         "projectName": "CosmeticWebApp.DAL",
-        "projectPath": "C:\\Users\\ASUS\\source\\repos\\CosmeticWebApp\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj",
+        "projectPath": "E:\\LTCSDL\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\source\\repos\\CosmeticWebApp\\CosmeticWebApp.DAL\\obj\\",
+        "outputPath": "E:\\LTCSDL\\CosmeticWebApp.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -79,8 +79,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\ASUS\\source\\repos\\CosmeticWebApp\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj": {
-                "projectPath": "C:\\Users\\ASUS\\source\\repos\\CosmeticWebApp\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj"
+              "E:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj": {
+                "projectPath": "E:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj"
               }
             }
           }
