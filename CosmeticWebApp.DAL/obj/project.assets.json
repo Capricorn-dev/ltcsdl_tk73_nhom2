@@ -5012,7 +5012,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ASUS\\.nuget\\packages\\": {}
+    "C:\\Users\\VS9 X64Bit\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -5020,11 +5020,11 @@
       "projectUniqueName": "E:\\LTCSDL\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj",
       "projectName": "CosmeticWebApp.DAL",
       "projectPath": "E:\\LTCSDL\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj",
-      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\VS9 X64Bit\\.nuget\\packages\\",
       "outputPath": "E:\\LTCSDL\\CosmeticWebApp.DAL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\VS9 X64Bit\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

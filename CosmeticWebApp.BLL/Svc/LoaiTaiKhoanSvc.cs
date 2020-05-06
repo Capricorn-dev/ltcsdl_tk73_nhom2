@@ -22,7 +22,7 @@ namespace CosmeticWebApp.BLL
             LoaiTaiKhoan loaiTaiKhoan = new LoaiTaiKhoan();
             //Gán giá trị
             loaiTaiKhoan.MaLTK = req.MaLTK;
-            loaiTaiKhoan.Ten = req.MaLTK;
+            loaiTaiKhoan.Ten = req.Ten;
             loaiTaiKhoan.GhiChu = req.GhiChu;
             //Tạo giá trị vào bảng
             _rep.Create(loaiTaiKhoan);

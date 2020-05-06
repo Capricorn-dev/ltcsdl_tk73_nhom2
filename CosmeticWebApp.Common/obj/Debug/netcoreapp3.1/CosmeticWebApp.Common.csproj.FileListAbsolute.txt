@@ -7,3 +7,12 @@ C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.Common\obj\Debug\netcor
 C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.dll
 C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.pdb
 C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.csprojAssemblyReference.cache
+E:\LTCSDL\CosmeticWebApp.Common\bin\Debug\netcoreapp3.1\CosmeticWebApp.Common.deps.json
+E:\LTCSDL\CosmeticWebApp.Common\bin\Debug\netcoreapp3.1\CosmeticWebApp.Common.dll
+E:\LTCSDL\CosmeticWebApp.Common\bin\Debug\netcoreapp3.1\CosmeticWebApp.Common.pdb
+E:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.csprojAssemblyReference.cache
+E:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.csproj.CoreCompileInputs.cache
+E:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.AssemblyInfoInputs.cache
+E:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.AssemblyInfo.cs
+E:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.dll
+E:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.pdb
