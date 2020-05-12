@@ -15,6 +15,27 @@ C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.BLL\obj\Debug\netcoreap
 C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.dll
 C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.pdb
 C:\Users\ASUS\source\repos\CosmeticWebApp\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.genruntimeconfig.cache
+E:\LTCSDL\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.csprojAssemblyReference.cache
+E:\LTCSDL\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.csproj.CoreCompileInputs.cache
+E:\LTCSDL\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.AssemblyInfoInputs.cache
+E:\LTCSDL\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.AssemblyInfo.cs
+E:\LTCSDL (demo)\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.csprojAssemblyReference.cache
+E:\LTCSDL (demo)\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.csproj.CoreCompileInputs.cache
+E:\LTCSDL (demo)\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.AssemblyInfoInputs.cache
+E:\LTCSDL (demo)\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.AssemblyInfo.cs
+E:\LTCSDL (demo)\CosmeticWebApp.BLL\bin\Debug\netcoreapp3.1\CosmeticWebApp.BLL.deps.json
+E:\LTCSDL (demo)\CosmeticWebApp.BLL\bin\Debug\netcoreapp3.1\CosmeticWebApp.BLL.runtimeconfig.json
+E:\LTCSDL (demo)\CosmeticWebApp.BLL\bin\Debug\netcoreapp3.1\CosmeticWebApp.BLL.runtimeconfig.dev.json
+E:\LTCSDL (demo)\CosmeticWebApp.BLL\bin\Debug\netcoreapp3.1\CosmeticWebApp.BLL.dll
+E:\LTCSDL (demo)\CosmeticWebApp.BLL\bin\Debug\netcoreapp3.1\CosmeticWebApp.BLL.pdb
+E:\LTCSDL (demo)\CosmeticWebApp.BLL\bin\Debug\netcoreapp3.1\CosmeticWebApp.Common.dll
+E:\LTCSDL (demo)\CosmeticWebApp.BLL\bin\Debug\netcoreapp3.1\CosmeticWebApp.DAL.dll
+E:\LTCSDL (demo)\CosmeticWebApp.BLL\bin\Debug\netcoreapp3.1\CosmeticWebApp.Common.pdb
+E:\LTCSDL (demo)\CosmeticWebApp.BLL\bin\Debug\netcoreapp3.1\CosmeticWebApp.DAL.pdb
+E:\LTCSDL (demo)\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.csproj.CopyComplete
+E:\LTCSDL (demo)\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.dll
+E:\LTCSDL (demo)\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.pdb
+E:\LTCSDL (demo)\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.genruntimeconfig.cache
 E:\LTCSDL\CosmeticWebApp.BLL\bin\Debug\netcoreapp3.1\CosmeticWebApp.BLL.deps.json
 E:\LTCSDL\CosmeticWebApp.BLL\bin\Debug\netcoreapp3.1\CosmeticWebApp.BLL.runtimeconfig.json
 E:\LTCSDL\CosmeticWebApp.BLL\bin\Debug\netcoreapp3.1\CosmeticWebApp.BLL.runtimeconfig.dev.json
@@ -24,10 +45,6 @@ E:\LTCSDL\CosmeticWebApp.BLL\bin\Debug\netcoreapp3.1\CosmeticWebApp.Common.dll
 E:\LTCSDL\CosmeticWebApp.BLL\bin\Debug\netcoreapp3.1\CosmeticWebApp.DAL.dll
 E:\LTCSDL\CosmeticWebApp.BLL\bin\Debug\netcoreapp3.1\CosmeticWebApp.Common.pdb
 E:\LTCSDL\CosmeticWebApp.BLL\bin\Debug\netcoreapp3.1\CosmeticWebApp.DAL.pdb
-E:\LTCSDL\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.csprojAssemblyReference.cache
-E:\LTCSDL\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.csproj.CoreCompileInputs.cache
-E:\LTCSDL\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.AssemblyInfoInputs.cache
-E:\LTCSDL\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.AssemblyInfo.cs
 E:\LTCSDL\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.csproj.CopyComplete
 E:\LTCSDL\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.dll
 E:\LTCSDL\CosmeticWebApp.BLL\obj\Debug\netcoreapp3.1\CosmeticWebApp.BLL.pdb

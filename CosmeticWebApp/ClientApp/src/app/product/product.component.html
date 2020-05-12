@@ -1,0 +1,216 @@
+<h1 id="tableLabel">Sản phẩm</h1>
+<div *ngIf = "checkLoading == false" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<button *ngIf = "checkLoading == true" type="button" class="btn btn-outline-dark" (click)="openCreateUpdateModal(false, null)">Thêm thương sản phẩm</button>
+<div *ngIf = "checkLoading == true" class="row" style="margin-top: 10px; margin-bottom: 10px;">
+    <div class="col-2">
+        <h5>Cài đặt</h5>
+    </div>
+    <div class="col-2">Kích thước bảng: </div>
+    <div class="col-1"><input class="form-control" [(ngModel)]="size" /> </div>
+    <div class="col-2">Trang thứ: </div>
+    <div class="col-1"><input class="form-control" [(ngModel)]="page" /> </div>
+    <div class="col-1">Từ khóa: </div>
+    <div class="col-1"><input class="form-control" [(ngModel)]="keyWord" /> </div>
+    <div class="col-2"><button (click)=" searchProducts()" type="button" class="btn btn-dark">Xác nhận</button></div>
+</div>
+<h1 *ngIf="products.totalRecords == 0 && checkLoading == true"><em>Không có dữ liệu "{{keyWord}}"</em></h1>
+<table *ngIf = "checkLoading == true" class='table table-bordered' aria-labelledby="tableLabel">
+    <thead>
+        <tr>
+            <th>Mã sản phẩm</th>
+            <th>Tên</th>
+            <th>Mã danh mục</th>
+            <th>Mã thương hiệu</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of products.data; index as i;">
+            <td>{{ data.productId }}</td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.categoryId }}</td>
+            <td>{{ data.brandId}}</td>
+            <td>
+                <button type="button" class="btn btn-outline-info" (click)="specificInformation(i)"> Xem cụ thể</button>
+                <button type="button" class="btn btn-outline-warning" style="margin-left: 10px;" (click)="openCreateUpdateModal(true, i)">Sửa</button>
+                <button type="button" class="btn btn-outline-danger" style="margin-left: 10px;" (click)="deleteProduct(data.productId)">Xóa</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!--Phân trang-->
+<ul *ngIf = "checkLoading == true" class="pagination">
+    <li>
+        <a type="button" class="btn btn-secondary" href="javascprit:void(0)" (click)="goPrevious()">Previous</a>
+    </li>
+    <li class="btn btn-outline-secondary" style="margin-left: 10px;">{{products.page}}</li>
+    <li style="margin-left: 10px;">
+        <a type="button" class="btn btn-secondary" href="javascprit:void(0)" (click)="goNext()">Next</a>
+    </li>
+</ul>
+<!-- Specific Information Modal -->
+<div class="modal fade" id="specificInformationModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Thông tin sản phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><em>Mã sản phẩm: </em>{{product.productId}}</p>
+                <p><em>Tên: </em>{{product.name}}</p>
+                <p><em>Mã danh mục: </em>{{product.brandId}}</p>
+                <p><em>Mã thương hiệu: </em>{{product.categoryId}}</p>
+                <p><em>Ngày tạo: </em>{{product.createdDate | date:'dd-MM-yyyy'}}</p>
+                <p><em>Đơn vị: </em>{{product.unit}}</p>
+                <p><em>Tồn kho: </em>{{product.unitsInStock}}</p>
+                <p><em>Khuyến mãi: </em>{{product.discount}}</p>
+                <p><em>Mô tả: </em>{{product.description}}</p>
+                <p><em>Ghi chú: </em>{{product.note}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal-->
+<div class="modal fade" id="openCreateUpdateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 *ngIf="!isEdit" class="modal-title" id="exampleModalLabel">Tạo sản phẩm</h5>
+                <h5 *ngIf="isEdit" class="modal-title" id="exampleModalLabel">Sửa sản phẩm</h5>
+                <button (click)="searchProducts(products.page)" type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-9">
+
+                    </div>
+                    <div class="col-3">
+                        <p class="text-danger">* là bắt buộc nhập</p>
+                    </div>
+                </div>
+                <br />
+                <!---->
+                <div class="row">
+                    <div class="col-2">
+                        Mã sản phẩm *
+                    </div>
+                    <div class="col-2">
+                        <input [disabled]="isEdit" class="form-control" [(ngModel)]="product.productId" />
+                    </div>
+                    <div class="col-2">
+                        Mã danh mục *
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group">
+                            <select [(ngModel)]="product.categoryId" class="form-control" id="categoryForm">
+                                <!--Sử dụng ngValue để ngModel lấy dữ liệu. Chứ không là ngModel lấy dữ liệu data.Name-->
+                                <option [(ngValue)] ="data.categoryId" *ngFor="let data of selectCategory; index as i">
+                                    {{data.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        Mã thương hiệu *
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group">
+                            <select [(ngModel)]="product.brandId" class="form-control" id="brandForm">
+                                <!--Sử dụng ngValue để ngModel lấy dữ liệu. Chứ không là ngModel lấy dữ liệu data.Name-->
+                                <option [(ngValue)] ="data.brandId" *ngFor="let data of selectBrand; index as i">
+                                    {{data.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <!---->
+                <div class="row">
+                    <div class="col-3">
+                        Tên sản phẩm *
+                    </div>
+                    <div class="col-9">
+                        <input class="form-control" [(ngModel)]="product.name" />
+                    </div>
+                </div>
+                <br />
+                <!---->
+                <div class="row">
+                    <div class="col-3">
+                        Ngày tạo *
+                    </div>
+                    <div class="col-9">
+                        <input [disabled]="product.createdDate != 0" class="form-control" [(ngModel)]="dateDisplay" />
+                    </div>
+                </div>
+                <br />
+                <!---->
+                <div class="row">
+                    <div class="col-2">
+                        Đơn vị *
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" [(ngModel)]="product.unit" />
+                    </div>
+                    <div class="col-2">
+                        Tồn kho*
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" [(ngModel)]="product.unitsInStock" />
+                    </div>
+                    <div class="col-2">
+                        Khuyến mãi *
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" [(ngModel)]="product.discount" />
+                    </div>
+                </div>
+                <br />
+                <!---->
+                <div class="row">
+                    <div class="col-12">
+                        Mô tả
+                    </div>
+                </div>
+                <!---->
+                <div class="row">
+                    <div class="col-12">
+                        <textarea class="form-control" rows=3 [(ngModel)]="product.description"></textarea>
+                    </div>
+                </div>
+                <!---->
+                <div class="row">
+                    <div class="col-12">
+                        Ghi chú
+                    </div>
+                    <div class="col-12">
+                        <textarea class="form-control" rows=3 [(ngModel)]="product.note"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button (click)="searchProducts(products.page)" type="button" class="btn btn-secondary"
+                        data-dismiss="modal">Thoát</button>
+                    <button *ngIf="!isEdit" type="button" class="btn btn-success" (click)="createProduct()">Tạo sản
+                        phẩm</button>
+                    <button *ngIf="isEdit" type="button" class="btn btn-primary" (click)="updateProduct()">Sửa sản
+                        phẩm</button>
+                </div>
+            </div>
+        </div>
+    </div>

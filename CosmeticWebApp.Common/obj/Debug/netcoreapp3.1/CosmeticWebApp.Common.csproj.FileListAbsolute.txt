@@ -16,3 +16,11 @@ E:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.As
 E:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.AssemblyInfo.cs
 E:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.dll
 E:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.pdb
+E:\LTCSDL (demo)\CosmeticWebApp.Common\bin\Debug\netcoreapp3.1\CosmeticWebApp.Common.deps.json
+E:\LTCSDL (demo)\CosmeticWebApp.Common\bin\Debug\netcoreapp3.1\CosmeticWebApp.Common.dll
+E:\LTCSDL (demo)\CosmeticWebApp.Common\bin\Debug\netcoreapp3.1\CosmeticWebApp.Common.pdb
+E:\LTCSDL (demo)\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.csproj.CoreCompileInputs.cache
+E:\LTCSDL (demo)\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.AssemblyInfoInputs.cache
+E:\LTCSDL (demo)\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.AssemblyInfo.cs
+E:\LTCSDL (demo)\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.dll
+E:\LTCSDL (demo)\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.pdb

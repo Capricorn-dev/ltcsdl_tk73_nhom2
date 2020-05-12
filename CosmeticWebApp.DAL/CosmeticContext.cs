@@ -9,52 +9,59 @@ namespace CosmeticWebApp.DAL
 {
     public class CosmeticContext : DbContext
     {
-        public DbSet<ThongTinCaNhan> ThongTinCaNhan { get; set; }
-        public DbSet<LoaiTaiKhoan> LoaiTaiKhoan { get; set; }
-        public DbSet<ThuongHieu> ThuongHieu { get; set; }
-        public DbSet<DanhMuc> DanhMuc { get; set; }
-        public DbSet<SanPham> SanPham { get; set; }
-        public DbSet<DonHang> DonHang { get; set; }
-        public DbSet<ChiTietDonHang> ChiTietDonHang { get; set; }
+        public CosmeticContext()
+        {
+        }
+
+        public CosmeticContext(DbContextOptions<CosmeticContext> options)
+            : base(options)
+        {
+        }
+        public DbSet<Personal_Information> Personal_Information { get; set; }
+        public DbSet<AccountType> AccountType { get; set; }
+        public DbSet<Brand> Brand { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<Orders> Orders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=.;Database=CosmeticAppDB;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=.;Database=CosmeticAppDBEng;Trusted_Connection=True;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
             //Fluent API sử dụng tạo bảng mới many - many chi tiết đơn hàng
-            modelBuilder.Entity<ChiTietDonHang>().HasKey(sc => new { sc.MaDH, sc.MaSP });
+            modelBuilder.Entity<OrderDetails>().HasKey(sc => new { sc.OrderId, sc.ProductId });
 
-            modelBuilder.Entity<ChiTietDonHang>()
-                .HasOne<DonHang>(sc => sc.DonHang)
-                .WithMany(s => s.ChiTietDonHang)
-                .HasForeignKey(sc => sc.MaDH);
+            modelBuilder.Entity<OrderDetails>()
+                .HasOne<Orders>(sc => sc.Orders)
+                .WithMany(s => s.OrderDetails)
+                .HasForeignKey(sc => sc.OrderId);
 
-            modelBuilder.Entity<ChiTietDonHang>()
-               .HasOne<SanPham>(sc => sc.SanPham)
-               .WithMany(s => s.ChiTietDonHang)
-               .HasForeignKey(sc => sc.MaSP);
+            modelBuilder.Entity<OrderDetails>()
+               .HasOne<Product>(sc => sc.Product)
+               .WithMany(s => s.OrderDetails)
+               .HasForeignKey(sc => sc.ProductId);
 
             //Fluent API sử dụng tạo 2 foreign key từ bảng thông tin cá nhân qua đơn hàng
 
-            modelBuilder.Entity<DonHang>()
-                .HasOne(m => m.KhachHang)
-                .WithMany(m => m.DonHangKhachHang)
-                .HasForeignKey(m => m.MaKH);
+            modelBuilder.Entity<Orders>()
+                .HasOne(m => m.Customer)
+                .WithMany(m => m.OrdersByCus)
+                .HasForeignKey(m => m.CusId);
 
-            modelBuilder.Entity<DonHang>()
-                .HasOne(m => m.NhanVien)
-                .WithMany(m => m.DonHangNhanVien)
-                .HasForeignKey(m => m.MaNV);
-
+            modelBuilder.Entity<Orders>()
+                .HasOne(m => m.Employee)
+                .WithMany(m => m.OrdersByEmp)
+                .HasForeignKey(m => m.EmpId);
         }
     }
 }
 
-///Sử dụng migration (Tool -> Nuget Package Manager -> Package Manager Console)
+///Sử dụng migration (Tools -> Nuget Package Manager -> Package Manager Console)
 ///Bước 1
-///Tạo mới migration: add-migration CreateCosmeticAppDB
+///Tạo mới migration: add-migration CosmeticAppDBEng
 ///Bước 2
 ///Chuyển dữ liệu qua database: update-database –verbose
