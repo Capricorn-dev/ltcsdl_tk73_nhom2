@@ -13,7 +13,7 @@ export class ProductComponent {
     page: number = 1;
     keyWord: String = "";
     //Khởi tạo các đối tượng
-    checkLoading = false;
+    checkLoading: Boolean = false;
     isEdit: Boolean = false; //Kiểm tra thêm hay sửa
     dateDisplay: String;
     products: any = {
@@ -50,35 +50,44 @@ export class ProductComponent {
     //Tìm
     checkProductsStatus: boolean = true; //Check gửi giá trị chưa
     searchProducts() {
-        this.checkLoading = false;
+        //Kiểm tra trang có tồn tại sau khi đã loading
+        if (this.checkLoading == true && (this.page > this.products.totalPages || this.page < 1)) {
+            alert("Không có trang này !!")
+        }
         //Các value truyền vào phải giống tên với các tham số phía back-end
-        //post
-        this.http.get<any>('https://localhost:44394/api/Product/searchProduct/'
-            + this.size + ',' + this.page + '?keyWord=' + this.keyWord).subscribe(
-                result => {
-                    var res: any = result;
-                    //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
-                    //Thu được dữ liệu
-                    if (res != null) {
-                        this.products = res;
-                        if (this.checkProductsStatus == true) {
-                            this.setValuesOfCategorySelect();
-                            this.setValuesOfBrandSelect();
-                            this.checkProductsStatus = false; //Nếu đã gửi thì không gửi nữa
+        //get
+        else {
+            this.http.get<any>('https://localhost:44394/api/Product/searchProduct/'
+                + this.size + ',' + this.page + '?keyWord=' + this.keyWord).subscribe(
+                    result => {
+                        var res: any = result;
+                        //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
+                        //Thu được dữ liệu
+                        if (res != null) {
+                            this.products = res;
+                            if (this.checkProductsStatus == true) {
+                                this.setValuesOfCategorySelect();
+                                this.setValuesOfBrandSelect();
+                                this.checkProductsStatus = false; //Nếu đã gửi thì không gửi nữa
+                            }
+                            this.checkLoading = true;
                         }
-                        this.checkLoading = true;
-                    }
-                    //Không thu được dữ liệu
-                    else {
-                        alert(res.message);
-                    }
-                },
-                error => {
-                    alert("Server error!!")
-                });  
+                        //Không thu được dữ liệu
+                        else {
+                            alert(res.message);
+                        }
+                    },
+                    error => {
+                        alert("Server error!!")
+                    });
+        }
+
     }
     //Tạo
     createProduct() {
+        //Do khi input vào là string nên phải chuyển qua int
+        this.product.unitsInStock = parseInt(this.product.unitsInStock, 10);
+        this.product.discount = parseInt(this.product.discount, 10);
         //post
         this.http.post('https://localhost:44394/api/Product/createProduct', this.product).subscribe(
             result => {
@@ -102,26 +111,29 @@ export class ProductComponent {
     }
     //Sửa
     updateProduct() {
+        //Do khi input vào là string nên phải chuyển qua int
+        this.product.unitsInStock = parseInt(this.product.unitsInStock, 10);
+        this.product.discount = parseInt(this.product.discount, 10);
         //post
-        this.http.put('https://localhost:44394/api/Product/updateProductPut/' 
-        + this.product.productId, this.product).subscribe(
-            result => {
-                var res: any = result;
-                //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
-                //Thu được dữ liệu
-                if (res != null) {
-                    this.products = res;
-                    alert("Đã sửa sản phẩm hiện tại !!");
-                    this.searchProducts(); //Quay về trang 1
-                }
-                //Không thu được dữ liệu
-                else {
-                    alert(res.message);
-                }
-            },
-            error => {
-                alert("Server error!!")
-            });
+        this.http.put('https://localhost:44394/api/Product/updateProductPut/'
+            + this.product.productId, this.product).subscribe(
+                result => {
+                    var res: any = result;
+                    //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
+                    //Thu được dữ liệu
+                    if (res != null) {
+                        this.products = res;
+                        alert("Đã sửa sản phẩm hiện tại !!");
+                        this.searchProducts(); //Quay về trang 1
+                    }
+                    //Không thu được dữ liệu
+                    else {
+                        alert(res.message);
+                    }
+                },
+                error => {
+                    alert("Server error!!")
+                });
     }
     //Xóa
     id: String = "";
@@ -130,7 +142,7 @@ export class ProductComponent {
         var check = confirm("Bạn có chắc chắn xóa sản phẩm này này ?"); //Tạo thông báo xác nhận xóa
         if (check == true) {
             //post
-            this.http.delete('https://localhost:44394/api/Product/deleteProduct/' + this.id ).subscribe(
+            this.http.delete('https://localhost:44394/api/Product/deleteProduct/' + this.id).subscribe(
                 result => {
                     var res: any = result;
                     //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
@@ -158,7 +170,7 @@ export class ProductComponent {
     //Các hàm liên quan đến phân trang
     goNext() {
         if (this.products.page < this.products.totalPages) {
-            this.page = this.page + 1;
+            this.page = parseInt("" + this.page) + 1; //Sau khi input thì chuyển string -> int
             this.searchProducts();
         }
         else {
@@ -167,7 +179,7 @@ export class ProductComponent {
     }
     goPrevious() {
         if (this.products.page > 1) {
-            this.page = this.page - 1;
+            this.page = parseInt("" + this.page) - 1; //Sau khi input thì chuyển string -> int
             this.searchProducts();
         }
         else {
@@ -248,21 +260,21 @@ export class ProductComponent {
         };
         //get
         this.http.get<any>('https://localhost:44394/api/Brand/searchBrand/'
-        + this.allSize + ',' + this.allPage + '?keyWord=').subscribe(
-            result => {
-                var res: any = result;
-                //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
-                //Thu được dữ liệu
-                if (res != null) {
-                    this.selectBrand = res.data;
-                }
-                //Không thu được dữ liệu
-                else {
-                    alert(res.message);
-                }
-            },
-            error => {
-                alert("Server error!!")
-            });
+            + this.allSize + ',' + this.allPage + '?keyWord=').subscribe(
+                result => {
+                    var res: any = result;
+                    //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
+                    //Thu được dữ liệu
+                    if (res != null) {
+                        this.selectBrand = res.data;
+                    }
+                    //Không thu được dữ liệu
+                    else {
+                        alert(res.message);
+                    }
+                },
+                error => {
+                    alert("Server error!!")
+                });
     }
 }

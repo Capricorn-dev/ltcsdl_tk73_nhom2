@@ -18,7 +18,7 @@ export class CategoryComponent {
   keyWord: String = "";
   //
   isEdit: Boolean = false; //Kiểm tra thêm hay sửa
-  checkLoading = false;
+  checkLoading: boolean = false;
   dateDisplay: String;
   nowDate = new Date();
   private datePipe: DatePipe;
@@ -44,39 +44,45 @@ export class CategoryComponent {
   //Các hàm liên qua đến category
   //Tìm
   searchCategories() {
-    //Các value truyền vào phải giống tên với các tham số phía back-end
+    //Kiểm tra trang có tồn tại sau khi đã loading
+    if (this.checkLoading == true && (this.page > this.categories.totalPages || this.page < 1)) {
+      alert("Không có trang này !!")
+    }
+    else
+    {
+       //Các value truyền vào phải giống tên với các tham số phía back-end
     //get
-    this.checkLoading = false;
     this.http.get<any>('https://localhost:44394/api/Category/searchCategory/' +
-      this.size + ',' + this.page + '?keyWord=' + this.keyWord).subscribe(
-        result => {
-          var res: any = result;
-          //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
-          //Thu được dữ liệu
-          if (res != null) {
-            this.categories = res;
-            this.checkLoading = true;
-          }
-          //Không thu được dữ liệu
-          else {
-            alert(res.message);
-          }
+    this.size + ',' + this.page + '?keyWord=' + this.keyWord).subscribe(
+      result => {
+        var res: any = result;
+        //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
+        //Thu được dữ liệu
+        if (res != null) {
+          this.categories = res;
+          this.checkLoading = true;
+        }
+        //Không thu được dữ liệu
+        else {
+          alert(res.message);
+        }
 
-          //Sử dụng SingleRsp
-          //Thu được dữ liệu
-          // if(res.success)
-          // {
-          //     this.customers = res.data;
-          // }
-          // //Không thu được dữ liệu
-          // else
-          // {
-          //     alert(res.message);
-          // }
-        },
-        error => {
-          alert("Server error!!")
-        });
+        //Sử dụng SingleRsp
+        //Thu được dữ liệu
+        // if(res.success)
+        // {
+        //     this.customers = res.data;
+        // }
+        // //Không thu được dữ liệu
+        // else
+        // {
+        //     alert(res.message);
+        // }
+      },
+      error => {
+        alert("Server error!!")
+      });
+    }
   }
   //Tạo
   createCategory() {

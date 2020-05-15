@@ -14,7 +14,7 @@ export class BrandComponent {
     page: number = 1;
     keyWord: String = "";
     //
-    checkLoading = false;
+    checkLoading: boolean = false;
     modalCreate: Boolean;
     isEdit: Boolean = false; //Kiểm tra thêm hay sửa
     dateDisplay: String;
@@ -44,27 +44,32 @@ export class BrandComponent {
     //Tìm
     searchBrands() {
 
-        //Các value truyền vào phải giống tên với các tham số phía back-end
-        //get
-        this.checkLoading = false;
-        this.http.get<any>('https://localhost:44394/api/Brand/searchBrand/' +
-            this.size + ',' + this.page + '?keyWord=' + this.keyWord).subscribe(
-                result => {
-                    var res: any = result;
-                    //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
-                    //Thu được dữ liệu
-                    if (res != null) {
-                        this.brands = res;
-                        this.checkLoading = true;
-                    }
-                    //Không thu được dữ liệu
-                    else {
-                        alert(res.message);
-                    }
-                },
-                error => {
-                    alert("Server error!!")
-                });
+        //Kiểm tra trang có tồn tại sau khi đã loading
+        if (this.checkLoading == true && (this.page > this.brands.totalPages || this.page < 1)) {
+            alert("Không có trang này !!")
+        }
+        else {
+            //Các value truyền vào phải giống tên với các tham số phía back-end
+            //get
+            this.http.get<any>('https://localhost:44394/api/Brand/searchBrand/' +
+                this.size + ',' + this.page + '?keyWord=' + this.keyWord).subscribe(
+                    result => {
+                        var res: any = result;
+                        //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
+                        //Thu được dữ liệu
+                        if (res != null) {
+                            this.brands = res;
+                            this.checkLoading = true;
+                        }
+                        //Không thu được dữ liệu
+                        else {
+                            alert(res.message);
+                        }
+                    },
+                    error => {
+                        alert("Server error!!")
+                    });
+        }
     }
     //Tạo
     createBrand() {
