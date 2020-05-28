@@ -29,6 +29,7 @@ export class ProductComponent {
     product: any = {
         productId: "",
         name: "",
+        price:"",
         brandId: "1",
         categoryId: "1",
         createdDate: this.nowDate.toJSON(), //Biến này dùng để post

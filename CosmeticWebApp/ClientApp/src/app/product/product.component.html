@@ -23,6 +23,7 @@
         <tr>
             <th>Mã sản phẩm</th>
             <th>Tên</th>
+            <th>Giá</th>
             <th>Mã danh mục</th>
             <th>Mã thương hiệu</th>
             <th>Chức năng</th>
@@ -32,6 +33,7 @@
         <tr *ngFor="let data of products.data; index as i;">
             <td>{{ data.productId }}</td>
             <td>{{ data.name }}</td>
+            <td>{{ data.price }}</td>
             <td>{{ data.categoryId }}</td>
             <td>{{ data.brandId}}</td>
             <td>
@@ -153,6 +155,16 @@
                 <!---->
                 <div class="row">
                     <div class="col-3">
+                        Giá sản phẩm *
+                    </div>
+                    <div class="col-9">
+                        <input class="form-control" [(ngModel)]="product.price" />
+                    </div>
+                </div>
+                <br />
+                <!---->
+                <div class="row">
+                    <div class="col-3">
                         Ngày tạo *
                     </div>
                     <div class="col-9">
@@ -203,6 +215,18 @@
                         <textarea class="form-control" rows=3 [(ngModel)]="product.note"></textarea>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        Hình ảnh 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <textarea class="form-control" rows=3 [(ngModel)]="product.picture"></textarea>
+                    </div>
+                </div>
+
                 <div class="modal-footer">
                     <button (click)="searchProducts(products.page)" type="button" class="btn btn-secondary"
                         data-dismiss="modal">Thoát</button>
