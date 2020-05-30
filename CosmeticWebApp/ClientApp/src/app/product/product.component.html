@@ -4,7 +4,7 @@
       <span class="sr-only">Loading...</span>
     </div>
 </div>
-<button *ngIf = "checkLoading == true" type="button" class="btn btn-outline-dark" (click)="openCreateUpdateModal(false, null)">Thêm thương sản phẩm</button>
+<button *ngIf = "checkLoading == true" type="button" class="btn btn-outline-dark" (click)="openCreateUpdateModal(false, null)">Thêm sản phẩm</button>
 <div *ngIf = "checkLoading == true" class="row" style="margin-top: 10px; margin-bottom: 10px;">
     <div class="col-2">
         <h5>Cài đặt</h5>
@@ -17,7 +17,7 @@
     <div class="col-1"><input class="form-control" [(ngModel)]="keyWord" /> </div>
     <div class="col-2"><button (click)=" searchProducts()" type="button" class="btn btn-dark">Xác nhận</button></div>
 </div>
-<h1 *ngIf="products.totalRecords == 0 && checkLoading == true"><em>Không có dữ liệu "{{keyWord}}"</em></h1>
+<h1 *ngIf="products.totalRecords == 0 && checkLoading == true"><em>Không có dữ liệu của: {{keyWord}}</em></h1>
 <table *ngIf = "checkLoading == true" class='table table-bordered' aria-labelledby="tableLabel">
     <thead>
         <tr>

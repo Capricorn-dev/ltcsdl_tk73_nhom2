@@ -1,15 +1,17 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 declare var $: any;
 
 @Component({
     selector: 'app-home-data',
-    templateUrl: './home.component.html'
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
     //Các biến phân trang
     //Mặc định
-    size: number = 5;
+    size: number = 8;
     page: number = 1;
     keyWord: String = "";
     //Khởi tạo các đối tượng
@@ -186,6 +188,9 @@ export class HomeComponent {
             alert("Bạn đang ở trang đầu !!!")
         }
     }
+
+    
+
     //Các hàm liên quan tới modal
     openCreateUpdateModal(isEdit, index) //Kiểm tra là thêm hay sửa
     {
