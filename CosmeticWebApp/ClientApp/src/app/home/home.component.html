@@ -2,7 +2,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   </head>
-<body>
+<body class="body">
   <div *ngIf = "checkLoading == false" class="d-flex justify-content-center">
     <div class="spinner-border" role="status">
       <span class="sr-only">Loading...</span>
@@ -82,7 +82,7 @@
 
 
 <div class="col-md-12" style="text-align: center;">
-  <h1>Sản Phẩm</h1>
+  <h1>SẢN PHẨM</h1>
 </div>
 <br/>
 
@@ -91,25 +91,24 @@
     <div class="row">
       <div *ngFor="let data of products.data; index as i;">
         <div class="card">
-          <img class="card-img-top" src="{{data.picture}}" (click)="specificInformation(i)">
+          <img class="card-img-top" src="{{data.picture}}" (click)="specificInformation(i)" style="height: 300px;">
           <div class="card-body">
             <div class="card-body" (click)="specificInformation(i)">
-              <h2 class="card-title" style="color: blue; text-align: center;">{{ data.name }}</h2>
+              <h2 class="card-title" style="color: black; text-align: center;">{{ data.name }}</h2>
             </div>
             <ul class="list-group list-group-flush" (click)="specificInformation(i)">
-              <li class="list-group-item" style="color: orangered;">{{ data.price }} vnđ</li>
+              <li class="list-group-item" style="color: orangered; text-align: center;">{{ data.price }} vnđ</li>
               <li class="list-group-item">Tồn kho: {{data.unitsInStock}}</li>
               <li class="list-group-item">Khuyến mãi: {{data.discount}}%</li>
             </ul>
           <div class="card-body">
-            <button type="button"  class="btn btn-outline-info" style="border-radius: 10px; border:2px solid skyblue;margin-left: 40px;">Mua hàng</button>
+            <button type="button"  class="btn btn-danger" style="border-radius: 10px; border:2px solid skyblue;margin-left: 40px;">Mua hàng</button>
           </div>
         </div>
       </div>
       </div> 
   </div>
 </div>
-
 <br/>
 
 
@@ -120,20 +119,19 @@
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item">
-      <a class="page-link" href="javascprit:void(0)" (click)="goPrevious()">
+      <a class="page-link" href="javascprit:void(0)" (click)="goPrevious()" style="border: 2px solid skyblue;">
         <span aria-hidden="true">&laquo;</span>
       </a>
-    <li class="page-item"><a class="page-link" style="margin-left: 10px;  margin-right: 10px;">{{products.page}}</a></li>
     <li class="page-item">
-      <a class="page-link" href="javascprit:void(0)" (click)="goNext()">
+      <a class="page-link" style="margin-left: 10px;  margin-right: 10px; border: 2px solid skyblue;" >{{products.page}}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="javascprit:void(0)" (click)="goNext()" style="border: 2px solid skyblue;">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
   </ul>
 </nav>
-
-
-
 
 
 <!-- Specific Information Modal -->

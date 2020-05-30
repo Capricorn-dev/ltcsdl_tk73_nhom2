@@ -64,7 +64,10 @@
   .card{
     width: 264px; 
     margin-left: 10px;
-    border: 3px solid green;
     margin-top: 20px;
-    box-shadow: 1px 1px 10px 5px midnightblue;
+    box-shadow: 1px 1px 20px 2px black;
+    background: linear-gradient(to bottom, #ffffff 50%, #ccffff 100%);
+  }
+  .body{
+    background: linear-gradient(to top, #ffffff 70%, #ccffff 100%);
   }
