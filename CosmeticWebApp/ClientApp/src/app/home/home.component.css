@@ -1,10 +1,11 @@
   .navbar {
   background: linear-gradient(to top right, #33ccff -1%, #333399 100%);
   border-radius: 50px;
-  height: 40px;
+  height: 50px;
   }
   .navbar:hover {
   border-radius: 50px;
+  width: fit-content;
   }
 
   .navbar a {
@@ -70,4 +71,18 @@
   }
   .body{
     background: linear-gradient(to top, #ffffff 70%, #ccffff 100%);
+  }
+  /* The animation code */
+  @keyframes example {
+    0%   {color: red;}  
+    50%  {color: blue;}
+  }
+
+  /* The element to apply the animation to */
+  .ani {
+    color: red;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-delay: 2s;
+    animation-iteration-count:  infinite;
   }
