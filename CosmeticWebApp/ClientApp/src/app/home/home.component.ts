@@ -11,7 +11,7 @@ declare var $: any;
 export class HomeComponent {
     //Các biến phân trang
     //Mặc định
-    size: number = 8;
+    size: number = 12;
     page: number = 1;
     keyWord: String = "";
     //Khởi tạo các đối tượng
@@ -83,7 +83,6 @@ export class HomeComponent {
                         alert("Server error!!")
                     });
         }
-
     }
     //Tạo
     createProduct() {

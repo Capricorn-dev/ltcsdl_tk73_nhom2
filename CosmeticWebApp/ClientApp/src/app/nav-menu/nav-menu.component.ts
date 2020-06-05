@@ -15,4 +15,13 @@ export class NavMenuComponent {
   toggle() {
     this.isExpanded = !this.isExpanded;
   }
+    openNav() {
+    document.getElementById("mySidenav").style.width = "195px";
+    document.getElementById("main").style.marginLeft = "195px";
+  }
+  
+  closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+  }
 }

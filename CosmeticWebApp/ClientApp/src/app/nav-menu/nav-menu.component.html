@@ -1,7 +1,12 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+</head>
 <header>
-  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
+<!--
+  <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #e3f2fd;">
     <div class="container">
-      <a class="navbar-brand text-light" [routerLink]="['/']">Thế giới cosmetic</a>
+      <a class="navbar-brand" [routerLink]="['/']">Thế giới cosmetic</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
         aria-label="Toggle navigation" [attr.aria-expanded]="isExpanded" (click)="toggle()">
         <span class="navbar-toggler-icon"></span>
@@ -9,18 +14,84 @@
       <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" [ngClass]="{ show: isExpanded }">
         <ul class="navbar-nav flex-grow">
           <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link text-light" [routerLink]="['/']" >Trang chủ</a>
+            <a class="nav-link" [routerLink]="['/']" >Trang chủ</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-light" [routerLink]="['/category']">Danh mục</a>
+            <a class="nav-link" [routerLink]="['/category']">Danh mục</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-light" [routerLink]="['/brand']" >Thương hiệu</a>
+            <a class="nav-link" [routerLink]="['/brand']" >Thương hiệu</a>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-light" [routerLink]="['/product']" >Sản phẩm</a>
+            <a class="nav-link" [routerLink]="['/product']" >Sản phẩm</a>
           </li>
+          <form class="form-inline">
+            <button id="btnshoping" type="button" class="btn btn-outline-secondary my-2 my-sm-0">
+              <i class="fas fa-user-circle"></i> Login
+            </button>
+          </form>
         </ul>
       </div>
     </div>
   </nav>
+-->
+
+<!-- Thanh điều hướng -->
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
+
+
+  <!-- Thanh Nav bên cạnh trái -->
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+    <a id="a-sidehover"> About</a>
+    <a id="a-sidehover"><i class="fas fa-wrench"></i> Services</a>
+    <a id="a-sidehover"><i class="fas fa-user"></i> Clients</a>
+    <a id="a-sidehover"><i class="fas fa-envelope"></i> Contact</a>
+  </div>
+  <div id="main">
+    <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
+  </div>
+  <!-- Thanh Nav bên cạnh trái -->
+
+
+  <li class="navbar-brand" [routerLink]="['/']"><i class="fas fa-shopping-basket"></i> SHOP</li>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+        <a id="a-hover" class="nav-link" [routerLink]="['/']"><i class="	fas fa-home"></i> Home</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+        <a id="a-hover" class="nav-link" [routerLink]="['/category']">Danh mục</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+        <a id="a-hover" class="nav-link" [routerLink]="['/brand']" >Thương hiệu</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['link-active']">
+        <a id="a-hover" class="nav-link" [routerLink]="['/product']" >Sản phẩm</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="a-hover" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown link
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a id="a-hover" class="dropdown-item" >Action</a>
+          <a id="a-hover" class="dropdown-item" >Another action</a>
+          <a id="a-hover" class="dropdown-item" >Something else here</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+  <div class="flex-sm-row-reverse">
+    <form class="form-inline">
+      <button id="btnshoping" type="button" class="btn btn-outline-light my-2 my-sm-0">
+        <i class="fas fa-shopping-cart"></i> Shopping Cart
+      </button>
+      <button id="btnshoping" type="button" class="btn btn-outline-light my-2 my-sm-0">
+        <i class="fas fa-user-circle"></i> Login
+      </button>
+    </form>
+  </div>
+</nav>
+<!-- Thanh điều hướng -->
 </header>
