@@ -32,4 +32,3 @@ D:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.As
 D:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.dll
 D:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.pdb
 D:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.csproj.CoreCompileInputs.cache
-D:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.csprojAssemblyReference.cache

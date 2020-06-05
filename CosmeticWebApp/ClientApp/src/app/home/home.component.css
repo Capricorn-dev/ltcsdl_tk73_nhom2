@@ -26,3 +26,15 @@
     animation-delay: 2s;
     animation-iteration-count:  infinite;
   }
+  #search{
+    width: 300px;
+    margin-left: 75px;
+    border-radius: 50px;
+  }
+  #btnsearch{
+    border-radius: 50px;
+  }
+  #btnshoping{
+    border-radius: 50px;
+    margin-left: 10px;
+  }
