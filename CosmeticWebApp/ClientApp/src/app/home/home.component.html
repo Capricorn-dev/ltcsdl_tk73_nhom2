@@ -1,6 +1,6 @@
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 <body class="body">
   <div *ngIf = "checkLoading == false" class="d-flex justify-content-center">
@@ -8,40 +8,52 @@
       <span class="sr-only">Loading...</span>
     </div>
   </div>
-  <nav class="navbar navbar-expand">  
-    <!-- Links -->
+
+<!-- Thanh điều hướng -->
+<nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #e3f2fd;">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link 1</a>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link 2</a>
+        <a class="nav-link" href="#">Features</a>
       </li>
-      <!-- Dropdown -->
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown link
         </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Link 1</a>
-          <a class="dropdown-item" href="#">Link 2</a>
-          <a class="dropdown-item" href="#">Link 3</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="text" placeholder="  Search..." name="search" [(ngModel)]="keyWord">
+        <button class="btn btn-default my-2 my-sm-0" type="submit" (click)="searchProducts()">Search</button>
+      </form>
+      <form class="form-inline">
+        <button type="button" class="btn btn-default my-2 my-sm-0">
+          <span class="material-icons">
+            </span> Shopping Cart
+        </button>
+      </form>
     </ul>
-    <ul>
-      <div>
-        <form>
-          <input type="text"placeholder="  Search..." name="search" [(ngModel)]="keyWord">
-          <button type="submit" (click)="searchProducts()">Search</button>
-        </form>
-      </div>
-    </ul>
-  </nav>
-  <br>
+  </div>
+</nav>
+<!-- Thanh điều hướng -->
 
+
+<!-- Banner -->
 <div id="demo" class="carousel slide" data-ride="carousel">
-
     <!-- Indicators -->
     <ul class="carousel-indicators">
       <li data-target="#demo" data-slide-to="0"></li>
@@ -69,7 +81,6 @@
         <img src="data:image/jpeg;base64,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" >
       </div>
     </div>
-  
     <!-- Left and right controls -->
     <a class="carousel-control-prev" href="#demo" data-slide="prev">
       <span class="carousel-control-prev-icon"></span>
@@ -79,43 +90,46 @@
     </a>
 </div>
 <br/>
+<!-- Banner -->
+
 
 
 <div class="col-md-12" style="text-align: center;">
   <h1 class="ani">SẢN PHẨM</h1>
 </div>
 <br/>
-
-
+<!-- Các card chứa thông tin sản phẩm -->
 <div class="container">
-    <div class="row">
-      <div *ngFor="let data of products.data; index as i;">
-        <div class="card">
-          <img class="card-img-top" src="{{data.picture}}" (click)="specificInformation(i)" style="height: 300px;">
-          <div class="card-body">
-            <div class="card-body" (click)="specificInformation(i)">
-              <h2 class="card-title" style="color: black; text-align: center;">{{ data.name }}</h2>
-            </div>
-            <ul class="list-group list-group-flush" (click)="specificInformation(i)">
-              <li class="list-group-item" style="color: orangered; text-align: center;">{{ data.price }} vnđ</li>
-              <li class="list-group-item">Tồn kho: {{data.unitsInStock}}</li>
-              <li class="list-group-item">Khuyến mãi: {{data.discount}}%</li>
-            </ul>
+  <div class="row"> 
+    <div *ngFor="let data of products.data; index as i;">
+      <div class="card" id="myList">
+        <img class="card-img-top" src="{{data.picture}}" (click)="specificInformation(i)" style="height: 300px;">
+        <div class="card-body">
+          <div class="card-body" (click)="specificInformation(i)">
+            <h2 class="card-title" style="color: black; text-align: center;">{{ data.name }}</h2>
+          </div>
+          <ul class="list-group list-group-flush" (click)="specificInformation(i)">
+            <li class="list-group-item" style="color: orangered; text-align: center;">{{ data.price }} vnđ</li>
+            <li class="list-group-item">Tồn kho: {{data.unitsInStock}}</li>
+            <li class="list-group-item">Khuyến mãi: {{data.discount}}%</li>
+          </ul>
           <div class="card-body">
             <button type="button"  class="btn btn-danger" style="border-radius: 10px; border:2px solid skyblue;margin-left: 40px;">Mua hàng</button>
           </div>
         </div>
       </div>
-      </div> 
+    </div> 
   </div>
 </div>
 <br/>
+<!-- Các card chứa thông tin sản phẩm -->
 
 
 <h1 *ngIf="products.totalRecords == 0 && checkLoading == true"><em>Không có dữ liệu</em></h1>
 <br/>
 
 
+<!-- Phân trang -->
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item">
@@ -132,6 +146,7 @@
     </li>
   </ul>
 </nav>
+<!-- Phân trang -->
 
 
 <!-- Specific Information Modal -->
