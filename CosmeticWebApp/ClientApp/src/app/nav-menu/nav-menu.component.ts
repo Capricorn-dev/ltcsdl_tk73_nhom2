@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+declare var $: any;
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
@@ -23,5 +23,8 @@ export class NavMenuComponent {
   closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
+  }
+  openLoginModal() {
+    $('#LoginModal').modal('show');
   }
 }

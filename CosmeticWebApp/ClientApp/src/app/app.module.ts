@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CategoryComponent } from './category/category.component';
 import { BrandComponent } from './brand/brand.component';
 import { ProductComponent } from './product/product.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ProductComponent } from './product/product.component';
     HomeComponent,
     CategoryComponent,
     BrandComponent,
-    ProductComponent
+    ProductComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,6 +31,7 @@ import { ProductComponent } from './product/product.component';
       { path: 'category', component: CategoryComponent },
       { path: 'brand', component: BrandComponent },
       { path: 'product', component: ProductComponent },
+      { path: 'profile', component: ProfileComponent },
     ])
   ],
   providers: [],

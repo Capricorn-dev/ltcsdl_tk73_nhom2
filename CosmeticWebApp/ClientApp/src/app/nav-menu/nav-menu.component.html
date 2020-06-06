@@ -68,6 +68,9 @@
       <li class="nav-item" [routerLinkActive]="['link-active']">
         <a id="a-hover" class="nav-link" [routerLink]="['/product']" >Sản phẩm</a>
       </li>
+      <li class="nav-item" [routerLinkActive]="['link-active']">
+        <a id="a-hover" class="nav-link" [routerLink]="['/profile']"><i class="fas fa-user"></i> User</a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="a-hover" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown link
@@ -87,7 +90,7 @@
       <button id="btnshoping" type="button" class="btn btn-outline-light my-2 my-sm-0">
         <i class="fas fa-shopping-cart"></i> Shopping Cart
       </button>
-      <button id="btnshoping" type="button" class="btn btn-outline-light my-2 my-sm-0">
+      <button id="btnlogin" type="button" class="btn btn-outline-light my-2 my-sm-0" (click)="openLoginModal()">
         <i class="fas fa-user-circle"></i> Login
       </button>
     </form>
@@ -95,3 +98,39 @@
 </nav>
 <!-- Thanh điều hướng -->
 </header>
+<body>
+
+
+  <!--Login Modal-->
+  <div id="LoginModal" class="modal">
+  
+    <form class="modal-content animate">
+
+      <div class="imgcontainer">
+        <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="Avatar" class="avatar">
+      </div>
+
+      <div class="container">
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required>
+  
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+          
+        <button id="button" type="submit">Login</button>
+        <button id="button" type="submit">Signup</button>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+      </div>
+  
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" class="cancelbtn" data-dismiss="modal" aria-label="Close">Cancel</button>
+        <span class="psw">Forgot <a href="#">password?</a></span>
+      </div>
+    </form>
+  </div>
+  <!--Login Modal-->
+
+
+</body>
