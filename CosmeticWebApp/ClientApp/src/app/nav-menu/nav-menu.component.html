@@ -42,7 +42,7 @@
   <!-- Thanh Nav bên cạnh trái -->
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-    <a id="a-sidehover"> About</a>
+    <a id="a-sidehover" [routerLink]="['/team']"> Meet The Team</a>
     <a id="a-sidehover"><i class="fas fa-wrench"></i> Services</a>
     <a id="a-sidehover"><i class="fas fa-user"></i> Clients</a>
     <a id="a-sidehover"><i class="fas fa-envelope"></i> Contact</a>
@@ -91,7 +91,10 @@
         <i class="fas fa-shopping-cart"></i> Shopping Cart
       </button>
       <button id="btnlogin" type="button" class="btn btn-outline-light my-2 my-sm-0" (click)="openLoginModal()">
-        <i class="fas fa-user-circle"></i> Login
+        <i class="fas fa-sign-in-alt"></i> Login
+      </button>
+      <button id="btnlogin" type="button" class="btn btn-outline-light my-2 my-sm-0" [routerLink]="['/signup']">
+        <i class="fas fa-user-plus"></i> Sign up
       </button>
     </form>
   </div>
@@ -111,14 +114,14 @@
       </div>
 
       <div class="container">
-        <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
+        <label for="uname"><b>Username or Email</b></label>
+        <input type="text" placeholder="Enter Username or Email" name="uname" required>
   
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="psw" required>
           
         <button id="button" type="submit">Login</button>
-        <button id="button" type="submit">Signup</button>
+        <button id="button" type="submit" [routerLink]="['/signup']">Signup</button>
         <label>
           <input type="checkbox" checked="checked" name="remember"> Remember me
         </label>

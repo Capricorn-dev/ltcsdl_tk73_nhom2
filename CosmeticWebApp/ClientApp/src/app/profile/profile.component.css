@@ -373,6 +373,7 @@ body{
     color: #fff;
     background-color: #008cff;
     box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px rgba(0, 140, 255, 0.5);
+    border-radius: 50px;
 }
 
 .nav-pills-success .nav-link.active, .nav-pills-success .show>.nav-link {
@@ -417,4 +418,7 @@ body{
 .z-depth-3 {
     -webkit-box-shadow: 0 11px 7px 0 rgba(0,0,0,0.19),0 13px 25px 0 rgba(0,0,0,0.3);
     box-shadow: 0 11px 7px 0 rgba(0,0,0,0.19),0 13px 25px 0 rgba(0,0,0,0.3);
+}
+#button{
+    border-radius: 50px;
 }

@@ -11,6 +11,8 @@ import { CategoryComponent } from './category/category.component';
 import { BrandComponent } from './brand/brand.component';
 import { ProductComponent } from './product/product.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SignupComponent } from './signup/signup.component';
+import { TeamComponent } from './team/team.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,10 @@ import { ProfileComponent } from './profile/profile.component';
     CategoryComponent,
     BrandComponent,
     ProductComponent,
-    ProfileComponent
+    ProfileComponent,
+    SignupComponent,
+    TeamComponent
+    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -32,6 +37,8 @@ import { ProfileComponent } from './profile/profile.component';
       { path: 'brand', component: BrandComponent },
       { path: 'product', component: ProductComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'signup', component: SignupComponent },
+      { path: 'team', component: TeamComponent },
     ])
   ],
   providers: [],
