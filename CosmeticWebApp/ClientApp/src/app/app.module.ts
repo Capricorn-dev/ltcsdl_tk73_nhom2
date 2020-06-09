@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CategoryComponent } from './category/category.component';
 import { BrandComponent } from './brand/brand.component';
 import { ProductComponent } from './product/product.component';
+import { OrderComponent } from './order/order.component';
 import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { ProfileComponent } from './profile/profile.component';
     CategoryComponent,
     BrandComponent,
     ProductComponent,
+    OrderComponent,
     ProfileComponent
   ],
   imports: [
@@ -31,7 +33,8 @@ import { ProfileComponent } from './profile/profile.component';
       { path: 'category', component: CategoryComponent },
       { path: 'brand', component: BrandComponent },
       { path: 'product', component: ProductComponent },
-      { path: 'profile', component: ProfileComponent },
+      { path: 'order', component: OrderComponent },
+      { path: 'profile', component: ProfileComponent }
     ])
   ],
   providers: [],

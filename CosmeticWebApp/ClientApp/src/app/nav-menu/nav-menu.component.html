@@ -69,6 +69,9 @@
         <a id="a-hover" class="nav-link" [routerLink]="['/product']" >Sản phẩm</a>
       </li>
       <li class="nav-item" [routerLinkActive]="['link-active']">
+        <a id="a-hover" class="nav-link" [routerLink]="['/order']" >Đơn hàng</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['link-active']">
         <a id="a-hover" class="nav-link" [routerLink]="['/profile']"><i class="fas fa-user"></i> User</a>
       </li>
       <li class="nav-item dropdown">
@@ -91,7 +94,7 @@
         <i class="fas fa-shopping-cart"></i> Shopping Cart
       </button>
       <button id="btnlogin" type="button" class="btn btn-outline-light my-2 my-sm-0" (click)="openLoginModal()">
-        <i class="fas fa-user-circle"></i> Login
+        <i class="fas fa-user-circle" ></i> Login
       </button>
     </form>
   </div>
@@ -111,13 +114,16 @@
       </div>
 
       <div class="container">
+        <h5 *ngIf="user.data.resultAccount==false">Tài khoản không tồn tại</h5>
+        <h5 *ngIf="user.data.resultAccount==true && user.data.resultPassword==false">Sai mật khẩu</h5>
+        <h5 *ngIf="user.data.resultAccount==true && user.data.resultPassword==true">Đăng nhập thành công</h5>
         <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
+        <input type="text" placeholder="Enter Username" name="uname" required [(ngModel)]="data.account">
   
         <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <input type="password" placeholder="Enter Password" name="psw" required [(ngModel)]="data.password">
           
-        <button id="button" type="submit">Login</button>
+        <button id="button" type="submit" (click)="checkLogin()">Login</button>
         <button id="button" type="submit">Signup</button>
         <label>
           <input type="checkbox" checked="checked" name="remember"> Remember me

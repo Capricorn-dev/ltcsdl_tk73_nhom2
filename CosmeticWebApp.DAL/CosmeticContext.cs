@@ -27,7 +27,7 @@ namespace CosmeticWebApp.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=.;Database=CosmeticAppDBEng;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=.;Database=Test;Trusted_Connection=True;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
