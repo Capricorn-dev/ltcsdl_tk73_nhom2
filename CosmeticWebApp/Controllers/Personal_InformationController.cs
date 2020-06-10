@@ -34,5 +34,12 @@ namespace CosmeticWebApp.Controllers
             var result = _svc.UpdatePersonal_Information(req);
             return Ok(result);
         }
+        //Kiểm tra đăng nhập
+        [HttpPost("checkUserLogin")]
+        public IActionResult CheckLogin(AccountReq req)
+        {
+            var result = _svc.CheckLogin(req);
+            return Ok(result);
+        }
     }
 }

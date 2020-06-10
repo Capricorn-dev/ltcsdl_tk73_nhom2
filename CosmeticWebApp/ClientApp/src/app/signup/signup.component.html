@@ -4,6 +4,9 @@
 </head>
 <body>
     <div class="container">
+      <h5 *ngIf="user.data.resultAccount==false">Tài khoản không tồn tại</h5>
+      <h5 *ngIf="user.data.resultAccount==true && user.data.resultPassword==false">Sai mật khẩu</h5>
+      <h5 *ngIf="user.data.resultAccount==true && user.data.resultPassword==true">Đăng nhập thành công</h5>
         <h1 style="text-align: center;">Sign Up</h1>
         <p style="text-align: center;">Please fill in this form to create an account.</p>
         <hr>

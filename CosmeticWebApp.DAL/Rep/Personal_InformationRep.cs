@@ -1,4 +1,5 @@
-﻿using CosmeticWebApp.DAL.Model;
+﻿using CosmeticWebApp.Common.Req;
+using CosmeticWebApp.DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,6 +70,37 @@ namespace CosmeticWebApp.DAL.Rep
             {
                 return ex.StackTrace; //Xuất ra lỗi
             }
+        }
+        public object CheckLogin(AccountReq req)
+        { 
+            //Tìm theo account
+            var search = _context.Personal_Information.FirstOrDefault(value => value.Account == req.Account);
+            //Khởi tạo giá trị trả về
+            Boolean resultAccount = false;
+            Boolean resultPassword = false;
+            if (search != null)
+            {
+                resultAccount = true;
+                //Tìm thấy
+                if (search.Pass.Equals(req.Password)) //Kiểm tra mật khẩu
+                {
+                    resultPassword = true;
+                }
+            }
+            //Giá trị
+            var data = new
+            {
+                ResultAccount = resultAccount,
+                ResultPassword = resultPassword,
+            };
+            //Kết quả
+            var result = new
+            {
+                Data = data,
+                Success = true
+            };
+            //Trả về kết quả
+            return result;
         }
     }
 }

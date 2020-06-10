@@ -27,9 +27,9 @@ E:\LTCSDL (demo)\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Co
 D:\LTCSDL\CosmeticWebApp.Common\bin\Debug\netcoreapp3.1\CosmeticWebApp.Common.deps.json
 D:\LTCSDL\CosmeticWebApp.Common\bin\Debug\netcoreapp3.1\CosmeticWebApp.Common.dll
 D:\LTCSDL\CosmeticWebApp.Common\bin\Debug\netcoreapp3.1\CosmeticWebApp.Common.pdb
+D:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.csprojAssemblyReference.cache
+D:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.csproj.CoreCompileInputs.cache
 D:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.AssemblyInfoInputs.cache
 D:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.AssemblyInfo.cs
 D:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.dll
 D:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.pdb
-D:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.csproj.CoreCompileInputs.cache
-D:\LTCSDL\CosmeticWebApp.Common\obj\Debug\netcoreapp3.1\CosmeticWebApp.Common.csprojAssemblyReference.cache
