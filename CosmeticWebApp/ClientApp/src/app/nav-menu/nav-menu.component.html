@@ -127,7 +127,7 @@
         <input type="password" placeholder="Enter Password" name="psw" required [(ngModel)]="data.password">
           
         <button id="button" type="submit" (click)="checkLogin()">Login</button>
-        <button id="button" type="submit">Signup</button>
+        <button id="button" type="submit" [routerLink]="['/signup']" data-dismiss="modal">Signup</button>
         <label>
           <input type="checkbox" checked="checked" name="remember"> Remember me
         </label>
@@ -140,6 +140,5 @@
     </form>
   </div>
   <!--Login Modal-->
-
 
 </body>

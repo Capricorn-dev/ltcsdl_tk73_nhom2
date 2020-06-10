@@ -11,7 +11,7 @@
   </div>
 
   <form class="form-inline flex-sm-row-reverse" style="padding: 10px;">
-    <button id="btnsearch" class="btn btn-outline-primary my-2 my-sm-0" type="submit" (click)="searchProducts()"><i class="fas fa-search"></i> Search</button>
+    <button id="btnsearch" class="btn btn-outline-light my-2 my-sm-0" type="submit" (click)="searchProducts()"><i class="fas fa-search"></i> Search</button>
     <input id="search" class="form-control mr-sm-2" type="text" placeholder="  Search..." name="search" [(ngModel)]="keyWord">
   </form>
 
@@ -60,7 +60,7 @@
 <div class="container">
   <div class="row"> 
     <div *ngFor="let data of products.data; index as i;">
-      <div class="card card-hover">
+      <div class="card" id="zoom">
         <img class="card-img-top" src="{{data.picture}}" (click)="specificInformation(i)" style="height: 300px;">
         <div class="card-body">
           <div class="card-body" (click)="specificInformation(i)">
@@ -74,9 +74,6 @@
           <div class="card-body">
             <button type="button" class="btn btn-danger" style="border-radius: 10px; border:2px solid skyblue;margin-left: 30px;"><i class="fas fa-cart-plus"></i> Mua hàng</button>
           </div>
-          <div class="reveal">
-            Xem chi tiết
-        </div>
         </div>
       </div>
     </div> 
@@ -91,7 +88,7 @@
 
 
 <!-- Phân trang -->
-<nav aria-label="Page navigation example">
+<nav aria-label="Page navigation example" style="padding: 20px;">
   <ul class="pagination justify-content-center">
     <li class="page-item">
       <a class="page-link" href="javascprit:void(0)" (click)="goPrevious()" style="border: 2px solid skyblue;">

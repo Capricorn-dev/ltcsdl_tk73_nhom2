@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 declare var $: any;
+
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
@@ -62,4 +63,7 @@ export class NavMenuComponent {
           alert("Server error!!")
       });
   }
+  
 }
+
+
