@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CategoryComponent } from './category/category.component';
 import { BrandComponent } from './brand/brand.component';
 import { ProductComponent } from './product/product.component';
+import { OrderComponent } from './order/order.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { TeamComponent } from './team/team.component';
@@ -22,6 +23,7 @@ import { TeamComponent } from './team/team.component';
     CategoryComponent,
     BrandComponent,
     ProductComponent,
+    OrderComponent,
     ProfileComponent,
     SignupComponent,
     TeamComponent
@@ -36,6 +38,7 @@ import { TeamComponent } from './team/team.component';
       { path: 'category', component: CategoryComponent },
       { path: 'brand', component: BrandComponent },
       { path: 'product', component: ProductComponent },
+      { path: 'order', component: OrderComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'signup', component: SignupComponent },
       { path: 'team', component: TeamComponent },
