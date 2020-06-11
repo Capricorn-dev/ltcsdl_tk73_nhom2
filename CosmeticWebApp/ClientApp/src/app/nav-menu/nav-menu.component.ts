@@ -1,5 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
+
+
 declare var $: any;
 
 @Component({
@@ -9,6 +12,8 @@ declare var $: any;
 })
 export class NavMenuComponent {
   isExpanded = false;
+  //Kiểm tra xem Login có đúng hay ko 
+  isLogin: Boolean = false;
 
   data: any = {
     account: "",
@@ -33,7 +38,7 @@ export class NavMenuComponent {
   openLoginModal() {
     $('#LoginModal').modal('show');
   }
-  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string)
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string,private router:Router)
   {
     //this.checkLogin();
   }
@@ -53,6 +58,10 @@ export class NavMenuComponent {
           //Thu được dữ liệu
           if (res != null) {
               this.user = res;
+              if(this.user.data.resultAccount==true || this.user.data.resultPassword==true)
+              {
+                this.toggleLoginModal();
+              }
           }
           //Không thu được dữ liệu
           else {
@@ -63,6 +72,9 @@ export class NavMenuComponent {
           alert("Server error!!")
       });
   }
+  toggleLoginModal() {
+    $('#LoginModal').modal('toggle');
+}
   
 }
 

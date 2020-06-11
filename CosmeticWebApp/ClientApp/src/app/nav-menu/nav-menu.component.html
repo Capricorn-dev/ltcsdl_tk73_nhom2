@@ -42,7 +42,7 @@
   <!-- Thanh Nav bên cạnh trái -->
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-    <a id="a-sidehover" [routerLink]="['/team']"> Meet The Team</a>
+    <a id="a-sidehover" [routerLink]="['/team']"> Contact my team</a>
     <a id="a-sidehover"><i class="fas fa-wrench"></i> Services</a>
     <a id="a-sidehover"><i class="fas fa-user"></i> Clients</a>
     <a id="a-sidehover"><i class="fas fa-envelope"></i> Contact</a>
@@ -90,14 +90,15 @@
 
   <div class="flex-sm-row-reverse">
     <form class="form-inline">
-      <button id="btnshoping" type="button" class="btn btn-outline-light my-2 my-sm-0">
+      <button id="btnshoping" type="button" class="btn btn-outline-light my-2 my-sm-0" [routerLink]="['/shoppingcart']">
         <i class="fas fa-shopping-cart"></i> Shopping Cart
       </button>
-      <button id="btnlogin" type="button" class="btn btn-outline-light my-2 my-sm-0" (click)="openLoginModal()">
+      <button id="btnlogin" type="button" class="btn btn-outline-light my-2 my-sm-0" (click)="toggleLoginModal()" >
         <i class="fas fa-sign-in-alt"></i> Login
       </button>
-      <button id="btnlogin" type="button" class="btn btn-outline-light my-2 my-sm-0" [routerLink]="['/signup']">
-        <i class="fas fa-user-plus"></i> Sign up
+
+      <button id="btnlogin" type="button" class="btn btn-outline-light my-2 my-sm-0" *ngIf="user.data.resultAccount==true && user.data.resultPassword==true">
+        <i class="	fas fa-sign-out-alt"></i> Sign out 
       </button>
     </form>
   </div>
@@ -116,26 +117,26 @@
         <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="Avatar" class="avatar">
       </div>
 
-      <div class="container">
+      <div class="container" (ngSubmit)="onSubmit()">
         <h5 *ngIf="user.data.resultAccount==false">Tài khoản không tồn tại</h5>
         <h5 *ngIf="user.data.resultAccount==true && user.data.resultPassword==false">Sai mật khẩu</h5>
         <h5 *ngIf="user.data.resultAccount==true && user.data.resultPassword==true">Đăng nhập thành công</h5>
-        <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required [(ngModel)]="data.account">
+        <label for="uname"><b>Tên đăng nhập</b></label>
+        <input type="text" placeholder="Tên đăng nhập" name="uname" required [(ngModel)]="data.account">
   
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required [(ngModel)]="data.password">
+        <label for="psw"><b>Mật khẩu</b></label>
+        <input type="password" placeholder="Mật khẩu" name="psw" required [(ngModel)]="data.password">
           
-        <button id="button" type="submit" (click)="checkLogin()">Login</button>
-        <button id="button" type="submit" [routerLink]="['/signup']" data-dismiss="modal">Signup</button>
+        <button id="button" type="submit" (click)="checkLogin()">Đăng nhập</button>
+        <button id="button" type="submit" [routerLink]="['/signup']" data-dismiss="modal">Đăng kí</button>
         <label>
-          <input type="checkbox" checked="checked" name="remember"> Remember me
+          <input type="checkbox" checked="checked" name="remember"> Nhớ mật khẩu
         </label>
       </div>
   
       <div class="container" style="background-color:#f1f1f1">
-        <button type="button" class="cancelbtn" data-dismiss="modal" aria-label="Close">Cancel</button>
-        <span class="psw">Forgot <a href="#">password?</a></span>
+        <button type="button" class="cancelbtn" data-dismiss="modal" aria-label="Close">Thoát</button>
+        <a href="#">Quên mật khẩu?</a>
       </div>
     </form>
   </div>
