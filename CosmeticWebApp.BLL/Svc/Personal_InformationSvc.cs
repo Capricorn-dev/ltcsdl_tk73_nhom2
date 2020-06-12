@@ -59,6 +59,9 @@ namespace CosmeticWebApp.BLL.Svc
             //Truyền giá trị
             return _rep.Update(personalInformation);
         }
-
+        public object CheckLogin(AccountReq req)
+        {
+            return _rep.CheckLogin(req);
+        }
     }
 }

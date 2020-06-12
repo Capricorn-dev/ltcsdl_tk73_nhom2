@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CosmeticWebApp.DAL.Migrations
 {
     [DbContext(typeof(CosmeticContext))]
-    [Migration("20200514082857_Demo")]
-    partial class Demo
+    [Migration("20200609114655_CosmeticAppDBEng")]
+    partial class CosmeticAppDBEng
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -287,6 +287,11 @@ namespace CosmeticWebApp.DAL.Migrations
 
                     b.Property<string>("Picture")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Price")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("Unit")
                         .IsRequired()

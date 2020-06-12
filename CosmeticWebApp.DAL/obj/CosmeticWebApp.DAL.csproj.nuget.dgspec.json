@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\LTCSDL\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj": {}
+    "D:\\LTCSDL\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj": {}
   },
   "projects": {
-    "E:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj": {
+    "D:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj",
+        "projectUniqueName": "D:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj",
         "projectName": "CosmeticWebApp.Common",
-        "projectPath": "E:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj",
+        "projectPath": "D:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "E:\\LTCSDL\\CosmeticWebApp.Common\\obj\\",
+        "outputPath": "D:\\LTCSDL\\CosmeticWebApp.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -37,6 +37,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -56,14 +62,14 @@
         }
       }
     },
-    "E:\\LTCSDL\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj": {
+    "D:\\LTCSDL\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\LTCSDL\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj",
+        "projectUniqueName": "D:\\LTCSDL\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj",
         "projectName": "CosmeticWebApp.DAL",
-        "projectPath": "E:\\LTCSDL\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj",
+        "projectPath": "D:\\LTCSDL\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "E:\\LTCSDL\\CosmeticWebApp.DAL\\obj\\",
+        "outputPath": "D:\\LTCSDL\\CosmeticWebApp.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -79,8 +85,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "E:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj": {
-                "projectPath": "E:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj"
+              "D:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj": {
+                "projectPath": "D:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj"
               }
             }
           }
@@ -96,17 +102,17 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.3, )"
+              "version": "[3.1.4, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.3, )"
+              "version": "[3.1.4, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.3, )"
+              "version": "[3.1.4, )"
             }
           },
           "imports": [

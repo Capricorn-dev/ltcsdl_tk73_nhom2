@@ -8,6 +8,7 @@ namespace CosmeticWebApp.Common.Req
     {
         public String ProductId { get; set; }
         public String Name { get; set; }
+        public String Price { get; set; }
         public String BrandId { get; set; }
         public String CategoryId { get; set; }
         public DateTime CreatedDate { get; set; }

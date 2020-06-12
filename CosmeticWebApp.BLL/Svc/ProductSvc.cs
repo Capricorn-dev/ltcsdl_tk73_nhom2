@@ -24,6 +24,7 @@ namespace CosmeticWebApp.BLL.Svc
             //Gán giá trị
             product.ProductId = req.ProductId;
             product.Name = req.Name;
+            product.Price = req.Price;
             product.BrandId = req.BrandId;
             product.CategoryId = req.CategoryId;
             product.Unit = req.Unit;

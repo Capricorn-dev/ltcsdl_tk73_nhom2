@@ -19,6 +19,14 @@ namespace CosmeticWebApp.DAL.Model
         [Column(TypeName = "nvarchar(30)")]
         [Required]
         public String Name { get; set; }
+
+
+        [MaxLength(30)]
+        [Column(TypeName = "nvarchar(30)")]
+        [Required]
+        public String Price { get; set; }
+
+
         //Thương hiệu
         [Column("Brand")]
         [Required]

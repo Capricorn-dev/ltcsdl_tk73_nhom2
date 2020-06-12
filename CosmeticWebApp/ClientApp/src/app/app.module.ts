@@ -10,6 +10,11 @@ import { HomeComponent } from './home/home.component';
 import { CategoryComponent } from './category/category.component';
 import { BrandComponent } from './brand/brand.component';
 import { ProductComponent } from './product/product.component';
+import { OrderComponent } from './order/order.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SignupComponent } from './signup/signup.component';
+import { TeamComponent } from './team/team.component';
+import { ShoppingcartComponent } from './shoppingcart/shoppingcart.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,13 @@ import { ProductComponent } from './product/product.component';
     HomeComponent,
     CategoryComponent,
     BrandComponent,
-    ProductComponent
+    ProductComponent,
+    OrderComponent,
+    ProfileComponent,
+    SignupComponent,
+    TeamComponent,
+    ShoppingcartComponent
+    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,6 +40,11 @@ import { ProductComponent } from './product/product.component';
       { path: 'category', component: CategoryComponent },
       { path: 'brand', component: BrandComponent },
       { path: 'product', component: ProductComponent },
+      { path: 'order', component: OrderComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'signup', component: SignupComponent },
+      { path: 'team', component: TeamComponent },
+      { path: 'shoppingcart', component: ShoppingcartComponent }
     ])
   ],
   providers: [],

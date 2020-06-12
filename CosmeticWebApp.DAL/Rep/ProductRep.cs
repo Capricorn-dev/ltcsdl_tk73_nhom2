@@ -45,6 +45,7 @@ namespace CosmeticWebApp.DAL.Rep
                     //Gán giá trị qua search result
                     //Không gán mã
                     searchResult.Name = req.Name;
+                    searchResult.Price = req.Price;
                     searchResult.BrandId = req.BrandId;
                     searchResult.CategoryId = req.CategoryId;
                     searchResult.Unit = req.Unit;

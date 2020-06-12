@@ -4,7 +4,7 @@
       <span class="sr-only">Loading...</span>
     </div>
 </div>
-<button *ngIf = "checkLoading == true" type="button" class="btn btn-outline-dark" (click)="openCreateUpdateModal(false, null)">Thêm thương sản phẩm</button>
+<button *ngIf = "checkLoading == true" type="button" class="btn btn-outline-dark" (click)="openCreateUpdateModal(false, null)">Thêm sản phẩm</button>
 <div *ngIf = "checkLoading == true" class="row" style="margin-top: 10px; margin-bottom: 10px;">
     <div class="col-2">
         <h5>Cài đặt</h5>
@@ -17,12 +17,13 @@
     <div class="col-1"><input class="form-control" [(ngModel)]="keyWord" /> </div>
     <div class="col-2"><button (click)=" searchProducts()" type="button" class="btn btn-dark">Xác nhận</button></div>
 </div>
-<h1 *ngIf="products.totalRecords == 0 && checkLoading == true"><em>Không có dữ liệu "{{keyWord}}"</em></h1>
+<h1 *ngIf="products.totalRecords == 0 && checkLoading == true"><em>Không có dữ liệu của: {{keyWord}}</em></h1>
 <table *ngIf = "checkLoading == true" class='table table-bordered' aria-labelledby="tableLabel">
     <thead>
         <tr>
             <th>Mã sản phẩm</th>
             <th>Tên</th>
+            <th>Giá</th>
             <th>Mã danh mục</th>
             <th>Mã thương hiệu</th>
             <th>Chức năng</th>
@@ -32,6 +33,7 @@
         <tr *ngFor="let data of products.data; index as i;">
             <td>{{ data.productId }}</td>
             <td>{{ data.name }}</td>
+            <td>{{ data.price }}</td>
             <td>{{ data.categoryId }}</td>
             <td>{{ data.brandId}}</td>
             <td>
@@ -153,6 +155,16 @@
                 <!---->
                 <div class="row">
                     <div class="col-3">
+                        Giá sản phẩm *
+                    </div>
+                    <div class="col-9">
+                        <input class="form-control" [(ngModel)]="product.price" />
+                    </div>
+                </div>
+                <br />
+                <!---->
+                <div class="row">
+                    <div class="col-3">
                         Ngày tạo *
                     </div>
                     <div class="col-9">
@@ -203,6 +215,18 @@
                         <textarea class="form-control" rows=3 [(ngModel)]="product.note"></textarea>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        Hình ảnh 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <textarea class="form-control" rows=3 [(ngModel)]="product.picture"></textarea>
+                    </div>
+                </div>
+
                 <div class="modal-footer">
                     <button (click)="searchProducts(products.page)" type="button" class="btn btn-secondary"
                         data-dismiss="modal">Thoát</button>

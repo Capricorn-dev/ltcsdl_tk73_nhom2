@@ -29,6 +29,7 @@ export class ProductComponent {
     product: any = {
         productId: "",
         name: "",
+        price:"",
         brandId: "1",
         categoryId: "1",
         createdDate: this.nowDate.toJSON(), //Biến này dùng để post
@@ -96,7 +97,7 @@ export class ProductComponent {
                 //Thu được dữ liệu
                 if (res != null) {
                     this.products = res;
-                    alert("Đã sản phẩm mục mới !!");
+                    alert("Đã thêm sản phẩm mới !!");
                     this.toggleCreateUpdateModal();
                     this.searchProducts(); //Quay về trang 1
                 }

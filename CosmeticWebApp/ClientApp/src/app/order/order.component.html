@@ -1,0 +1,47 @@
+<h1 id="tableLabel">Đơn hàng</h1>
+<h5>Bạn đang xem các đơn hàng: {{orders.data[0].orderStatus}}</h5>
+<div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+    <!--Options-->
+    <div class="col-2">Kích thước bảng: </div>
+    <div class="col-1"><input class="form-control" [(ngModel)]="size" /> </div>
+    <div class="col-2">Trang thứ: </div>
+    <div class="col-1"><input class="form-control" [(ngModel)]="page" /> </div>
+    <div class="col-2">Tình trạng: </div>
+    <div class="form-group">
+        <select [(ngModel)] = "keyWord" class="form-control" id="categoryForm">
+            <!--Sử dụng ngValue để ngModel lấy dữ liệu. Chứ không là ngModel lấy dữ liệu data.Name-->
+            <option [(ngValue)] ="data.statusName" *ngFor="let data of selectOrderStatus; index as i">
+                {{data.statusName}}
+            </option>
+        </select>
+    </div>
+    <div class="col-2"><button type="button" class="btn btn-dark" (click)="searchOrder()">Xác nhận</button></div>
+</div>
+
+<!--Table-->
+<table class='table table-bordered' aria-labelledby="tableLabel">
+    <thead>
+        <tr>
+            <th>Mã đơn hàng</th>
+            <th>Tên</th>
+            <th>Ngày tạo</th>
+            <th>Quận</th>
+            <th>Tình trạng</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of orders.data; index as i;">
+            <td>{{ data.orderId }}</td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.createdDate | date:'dd-MM-yyyy' }}</td>
+            <td>{{ data.district }}</td>
+            <td>{{ data.orderStatus }}</td>
+            <td>
+                <button type="button" class="btn btn-outline-info"> Duyệt đơn</button>
+                <button type="button" class="btn btn-outline-warning" style="margin-left: 10px;">Chi tiết</button>
+                <button type="button" class="btn btn-outline-danger" style="margin-left: 10px;">Hủy đơn</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

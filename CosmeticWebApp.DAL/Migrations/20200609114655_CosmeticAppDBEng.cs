@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CosmeticWebApp.DAL.Migrations
 {
-    public partial class Demo : Migration
+    public partial class CosmeticAppDBEng : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -87,6 +87,7 @@ namespace CosmeticWebApp.DAL.Migrations
                 {
                     ProductId = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Price = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Brand = table.Column<string>(nullable: false),
                     Category = table.Column<string>(nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
