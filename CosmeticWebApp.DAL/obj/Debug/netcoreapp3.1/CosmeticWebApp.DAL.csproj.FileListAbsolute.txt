@@ -51,9 +51,9 @@ D:\LTCSDL\CosmeticWebApp.DAL\bin\Debug\netcoreapp3.1\CosmeticWebApp.DAL.pdb
 D:\LTCSDL\CosmeticWebApp.DAL\bin\Debug\netcoreapp3.1\CosmeticWebApp.Common.dll
 D:\LTCSDL\CosmeticWebApp.DAL\bin\Debug\netcoreapp3.1\CosmeticWebApp.Common.pdb
 D:\LTCSDL\CosmeticWebApp.DAL\obj\Debug\netcoreapp3.1\CosmeticWebApp.DAL.csprojAssemblyReference.cache
-D:\LTCSDL\CosmeticWebApp.DAL\obj\Debug\netcoreapp3.1\CosmeticWebApp.DAL.csproj.CoreCompileInputs.cache
 D:\LTCSDL\CosmeticWebApp.DAL\obj\Debug\netcoreapp3.1\CosmeticWebApp.DAL.AssemblyInfoInputs.cache
 D:\LTCSDL\CosmeticWebApp.DAL\obj\Debug\netcoreapp3.1\CosmeticWebApp.DAL.AssemblyInfo.cs
+D:\LTCSDL\CosmeticWebApp.DAL\obj\Debug\netcoreapp3.1\CosmeticWebApp.DAL.csproj.CoreCompileInputs.cache
 D:\LTCSDL\CosmeticWebApp.DAL\obj\Debug\netcoreapp3.1\CosmeticWebApp.DAL.csproj.CopyComplete
 D:\LTCSDL\CosmeticWebApp.DAL\obj\Debug\netcoreapp3.1\CosmeticWebApp.DAL.dll
 D:\LTCSDL\CosmeticWebApp.DAL\obj\Debug\netcoreapp3.1\CosmeticWebApp.DAL.pdb
