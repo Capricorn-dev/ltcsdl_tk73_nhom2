@@ -97,7 +97,11 @@
         <i class="fas fa-sign-in-alt"></i> Login
       </button>
 
-      <button id="btnlogin" type="button" class="btn btn-outline-light my-2 my-sm-0" *ngIf="user.data.resultAccount==true && user.data.resultPassword==true">
+      <button id="btnlogin" type="button" class="btn btn-outline-light my-2 my-sm-0" *ngIf="user.data.resultAccount==true && user.data.resultPassword==true" [routerLink]="['/profile']">
+        <i class="fas fa-user"></i> User name
+      </button>
+
+      <button id="btnlogin" type="button" class="btn btn-outline-light my-2 my-sm-0" *ngIf="user.data.resultAccount==true && user.data.resultPassword==true" onClick="window.location.href=window.location.href">
         <i class="	fas fa-sign-out-alt"></i> Sign out 
       </button>
     </form>
@@ -106,7 +110,6 @@
 <!-- Thanh điều hướng -->
 </header>
 <body>
-
 
   <!--Login Modal-->
   <div id="LoginModal" class="modal">

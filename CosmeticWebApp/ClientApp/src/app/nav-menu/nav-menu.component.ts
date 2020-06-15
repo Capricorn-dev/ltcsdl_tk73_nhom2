@@ -67,14 +67,21 @@ export class NavMenuComponent {
           else {
               alert(res.message);
           }
+          
       },
       error => {
           alert("Server error!!")
       });
+      var x = document.getElementById("btnlogin");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
   }
   toggleLoginModal() {
     $('#LoginModal').modal('toggle');
-}
+  }
   
 }
 
