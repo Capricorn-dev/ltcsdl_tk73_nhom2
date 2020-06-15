@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ShoppingcartComponent } from 'src/app/shoppingcart/shoppingcart.component'
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -9,6 +11,13 @@ declare var $: any;
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+    //Cart
+    cart: any = {
+        account: "",
+        productId: "",
+        amounts: 0,
+        note: ""
+    }
     //Các biến phân trang
     //Mặc định
     size: number = 12;
@@ -45,9 +54,13 @@ export class HomeComponent {
     selectCategory: any = [];
     selectBrand: any = [];
 
-    constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    //private http: HttpClient; @Inject('BASE_URL') baseUrl: string;
+    constructor();
+    constructor(private http?: HttpClient, @Inject('BASE_URL') baseUrl?: string,
+    private router?: Router) {
         this.searchProducts();
     }
+    
     //Các hàm liên qua đến category
     //Tìm
     checkProductsStatus: boolean = true; //Check gửi giá trị chưa
@@ -280,5 +293,47 @@ export class HomeComponent {
                 error => {
                     alert("Server error!!")
                 });
+    }
+    //Thêm vào giỏ hàng
+    shoppingCart: ShoppingcartComponent 
+    addToCart(productId: String)
+    {
+        try
+        {
+            //Nếu chưa đăng nhập thì không thể lấy được account
+            this.cart.account = document.getElementById("btnUserName").textContent;
+        }
+        catch
+        {
+            this.cart.account = null
+        }
+        
+        if(this.cart.account == null)
+        {
+            alert("Bạn chưa đăng nhập");
+        }
+        else
+        {
+            this.cart.productId = productId;
+            this.http.post('https://localhost:44394/api/Cart/createCart',this.cart).subscribe(
+                result => {
+                    var res: any = result;
+                    //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
+                    //Thu được dữ liệu
+                    if (res != null) {
+                        alert("Thêm vào giỏ hàng thành công")
+                    }
+                    //Không thu được dữ liệu
+                    else {
+                        alert("Lỗi dữ liệu");
+                    }
+                },
+                error => {
+                    alert("Server error!!")
+                });
+            
+        }
+        
+        
     }
 }

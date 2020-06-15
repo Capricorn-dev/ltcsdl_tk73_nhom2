@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CosmeticWebApp.DAL.Migrations
 {
     [DbContext(typeof(CosmeticContext))]
-    [Migration("20200609114655_CosmeticAppDBEng")]
-    partial class CosmeticAppDBEng
+    [Migration("20200615085533_Test2")]
+    partial class Test2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -74,6 +74,28 @@ namespace CosmeticWebApp.DAL.Migrations
                     b.HasKey("BrandId");
 
                     b.ToTable("Brand");
+                });
+
+            modelBuilder.Entity("CosmeticWebApp.DAL.Model.Cart", b =>
+                {
+                    b.Property<string>("Account")
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("ProductId")
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<int>("Amounts")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Account", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Cart");
                 });
 
             modelBuilder.Entity("CosmeticWebApp.DAL.Model.Category", b =>
@@ -307,6 +329,21 @@ namespace CosmeticWebApp.DAL.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Product");
+                });
+
+            modelBuilder.Entity("CosmeticWebApp.DAL.Model.Cart", b =>
+                {
+                    b.HasOne("CosmeticWebApp.DAL.Model.Personal_Information", "Personal_Information")
+                        .WithMany("Cart")
+                        .HasForeignKey("Account")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CosmeticWebApp.DAL.Model.Product", "Product")
+                        .WithMany("Cart")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CosmeticWebApp.DAL.Model.OrderDetails", b =>

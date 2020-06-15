@@ -11,9 +11,9 @@ declare var $: any;
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
+  userLogin: String = "Người dùng"; //Mặc định
   isExpanded = false;
   //Kiểm tra xem Login có đúng hay ko 
-  isLogin: Boolean = false;
 
   data: any = {
     account: "",
@@ -44,7 +44,13 @@ export class NavMenuComponent {
   }
   //Handle Login
   user : any = {
-    data: {},
+    data: {
+      resultAccount: Boolean,
+      resultPassword: Boolean,
+      account: "",
+      phoneNumber: "",
+      email: "",
+    },
     success: Boolean
   }
   checkLogin()
@@ -60,6 +66,10 @@ export class NavMenuComponent {
               this.user = res;
               if(this.user.data.resultAccount==true || this.user.data.resultPassword==true)
               {
+                //Chỉ hiện thị giỏ hàng khi đã đăng nhập
+                document.getElementById("btnShopingCast").style.visibility = "visible";
+                //Set text khi đăng nhập
+                this.userLogin = this.user.data.account;
                 this.toggleLoginModal();
               }
           }

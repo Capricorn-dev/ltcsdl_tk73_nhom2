@@ -78,6 +78,9 @@ namespace CosmeticWebApp.DAL.Rep
             //Khởi tạo giá trị trả về
             Boolean resultAccount = false;
             Boolean resultPassword = false;
+            String account = null;
+            String phoneNumber = null;
+            String email = null;
             if (search != null)
             {
                 resultAccount = true;
@@ -85,6 +88,9 @@ namespace CosmeticWebApp.DAL.Rep
                 if (search.Pass.Equals(req.Password)) //Kiểm tra mật khẩu
                 {
                     resultPassword = true;
+                    account = search.Account;
+                    phoneNumber = search.PhoneNumber;
+                    email = search.Email;
                 }
             }
             //Giá trị
@@ -92,6 +98,9 @@ namespace CosmeticWebApp.DAL.Rep
             {
                 ResultAccount = resultAccount,
                 ResultPassword = resultPassword,
+                Account = account,
+                PhoneNumber = phoneNumber,
+                Email = email
             };
             //Kết quả
             var result = new

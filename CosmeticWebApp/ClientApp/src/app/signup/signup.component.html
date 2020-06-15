@@ -9,37 +9,40 @@
         <hr>
 
         <label for="email"><b>Tên đăng nhập </b></label>
-        <input type="text" placeholder="Tên đăng nhập" required>
+        <input type="text" placeholder="Tên đăng nhập" required [(ngModel)] = "user.account">
 
         <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Nhập Email" name="email" required>
+        <input type="text" placeholder="Nhập Email" name="email" required [(ngModel)] = "user.email">
   
         <label for="psw"><b>Mật khẩu</b></label>
-        <input type="password" placeholder="Nhập mật khẩu" name="psw" required>
+        <input type="password" placeholder="Nhập mật khẩu" name="psw" required [(ngModel)] = "user.pass">
   
         <label for="psw-repeat"><b>Xác nhận mật khẩu</b></label>
-        <input type="password" placeholder="Xác nhận mật khẩu" name="psw-repeat" required>
+        <input type="password" placeholder="Xác nhận mật khẩu" name="psw-repeat" required >
 
         <label><b>Họ</b></label>
-        <input type="text" placeholder="Họ" required>
+        <input type="text" placeholder="Họ" required [(ngModel)] = "user.lastName">
 
         <label><b>Tên</b></label>
-        <input type="text" placeholder="Tên" required>
+        <input type="text" placeholder="Tên" required [(ngModel)] = "user.firstName">
+
+        <label><b>Số điện thoại</b></label>
+        <input type="text" placeholder="Số điện thoại" required [(ngModel)] = "user.phoneNumber">
 
         <label><b>Ngày sinh</b></label>
-        <input type="date" placeholder="Ngày sinh" required>
+        <input type="date" placeholder="Ngày sinh" required [(ngModel)] = "user.dateOfBirth">
 
         <label><b>Giới tính</b></label>
-        <input type="text" placeholder="Giới tính" required>
+        <input type="text" placeholder="Giới tính" required [(ngModel)] = "user.gender">
 
         <label><b>Địa chỉ</b></label>
-        <input type="text" placeholder="Địa chỉ" required>
+        <input type="text" placeholder="Địa chỉ" required [(ngModel)] = "user.address">
         
         <p>Tôi đã đọc và đồng ý<a href="#" style="color:dodgerblue">Điều khoảng & Dịch vụ</a>.</p>
   
         <div>
           <button type="button" class="cancelbtn" [routerLink]="['/']">Cancel</button>
-          <button type="submit" class="signupbtn">Sign Up</button>
+          <button type="submit" class="signupbtn" (click)="createUser()">Sign Up</button>
         </div>
       </div>
 </body>

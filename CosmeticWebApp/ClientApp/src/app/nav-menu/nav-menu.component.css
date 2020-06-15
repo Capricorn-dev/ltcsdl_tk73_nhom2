@@ -51,7 +51,13 @@ html {
 }
 
 /*Thanh Header*/
-
+/*Thanh Nav ở bên cạnh phải*/
+h5.hiddenLogin{
+  visibility: visible;
+}
+#btnShopingCast{
+  visibility: hidden;
+}
 /*Thanh Nav ở bên cạnh trái*/
 .sidenav {
   height: 100%;

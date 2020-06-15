@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CosmeticWebApp.DAL.Migrations
 {
-    public partial class CosmeticAppDBEng : Migration
+    public partial class Test1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
