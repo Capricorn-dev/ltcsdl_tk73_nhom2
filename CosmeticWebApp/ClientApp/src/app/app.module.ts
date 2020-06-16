@@ -15,6 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { TeamComponent } from './team/team.component';
 import { ShoppingcartComponent } from './shoppingcart/shoppingcart.component';
+import { BillComponent } from './bill/bill.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ShoppingcartComponent } from './shoppingcart/shoppingcart.component';
     ProfileComponent,
     SignupComponent,
     TeamComponent,
-    ShoppingcartComponent
+    ShoppingcartComponent,
+    BillComponent
     
   ],
   imports: [
@@ -44,7 +46,8 @@ import { ShoppingcartComponent } from './shoppingcart/shoppingcart.component';
       { path: 'profile', component: ProfileComponent },
       { path: 'signup', component: SignupComponent },
       { path: 'team', component: TeamComponent },
-      { path: 'shoppingcart', component: ShoppingcartComponent }
+      { path: 'shoppingcart', component: ShoppingcartComponent },
+      { path: 'bill', component: BillComponent }
     ])
   ],
   providers: [],

@@ -10,11 +10,11 @@
         "projectUniqueName": "D:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj",
         "projectName": "CosmeticWebApp.Common",
         "projectPath": "D:\\LTCSDL\\CosmeticWebApp.Common\\CosmeticWebApp.Common.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Lenogas.DESKTOP-EHRHPBA\\.nuget\\packages\\",
         "outputPath": "D:\\LTCSDL\\CosmeticWebApp.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenogas.DESKTOP-EHRHPBA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,7 +40,7 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.4, )"
+              "version": "[3.1.5, )"
             }
           },
           "imports": [
@@ -68,11 +68,11 @@
         "projectUniqueName": "D:\\LTCSDL\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj",
         "projectName": "CosmeticWebApp.DAL",
         "projectPath": "D:\\LTCSDL\\CosmeticWebApp.DAL\\CosmeticWebApp.DAL.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Lenogas.DESKTOP-EHRHPBA\\.nuget\\packages\\",
         "outputPath": "D:\\LTCSDL\\CosmeticWebApp.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenogas.DESKTOP-EHRHPBA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -102,17 +102,17 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.4, )"
+              "version": "[3.1.5, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.4, )"
+              "version": "[3.1.5, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.4, )"
+              "version": "[3.1.5, )"
             }
           },
           "imports": [

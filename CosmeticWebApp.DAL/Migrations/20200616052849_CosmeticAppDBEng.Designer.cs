@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CosmeticWebApp.DAL.Migrations
 {
     [DbContext(typeof(CosmeticContext))]
-    [Migration("20200609114655_CosmeticAppDBEng")]
+    [Migration("20200616052849_CosmeticAppDBEng")]
     partial class CosmeticAppDBEng
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
