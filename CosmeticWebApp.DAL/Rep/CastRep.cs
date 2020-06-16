@@ -96,7 +96,8 @@ namespace CosmeticWebApp.DAL.Rep
                 p.Unit,
                 p.Price,
                 p.Picture,
-                c.Account
+                c.Account,
+                c.ProductId
             }).ToArray();
             var data = new
             {

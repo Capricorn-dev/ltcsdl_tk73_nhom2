@@ -16,8 +16,8 @@ export class NavMenuComponent {
   //Kiểm tra xem Login có đúng hay ko 
 
   data: any = {
-    account: "",
-    password: ""
+    account: "string",
+    password: "string"
   }
   collapse() {
     this.isExpanded = false;

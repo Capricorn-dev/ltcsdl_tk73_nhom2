@@ -1,6 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+
+declare var $: any;
 @Component({
     selector: 'app-shoppingcart-data',
     templateUrl: './shoppingcart.component.html',
@@ -8,6 +10,7 @@ import { Router } from '@angular/router';
 })
 
 export class ShoppingcartComponent {
+    itemAmount: number = 1;
     userLogin: String = document.getElementById("btnUserName").textContent;
     result: any = {
         cartList: []
@@ -36,4 +39,35 @@ export class ShoppingcartComponent {
                     alert("Server error!!")
                 });
     }
+    removeItemFromCart(account: String, productId: String)
+    {
+        this.http.delete<any>('https://localhost:44394/api/Cart/deleteCart/' + account + 
+        ',' + productId).subscribe(
+                result => {
+                    var res: any = result;
+                    //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
+                    //Thu được dữ liệu
+                    if (res != null) {
+                        alert("Xóa thành công sản phẩm trong giỏ hàng");
+                        this.getCartByAccount(account); //reload
+                    }
+                    //Không thu được dữ liệu
+                    else {
+                        alert("Lỗi dữ liệu");
+                    }
+                },
+                error => {
+                    alert("Server error!!")
+                });
+        
+    }
+    //Amount
+    checkItemAmoutInCart()
+    {
+        alert("changed");
+        // $(":input").bind('keyup mouseup', function () {
+        //     alert("changed");            
+        // });
+    }
+    
 }

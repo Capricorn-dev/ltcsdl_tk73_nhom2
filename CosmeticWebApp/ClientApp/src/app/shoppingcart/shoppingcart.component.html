@@ -1,56 +1,69 @@
 <!DOCTYPE html>
 <html>
-    <br/>
-    <br/>
-    <h1>{{userLogin}}</h1>
-    <div class="container">    
-        <div class="card">
-        <table class="table table-hover shopping-cart-wrap">
-        <thead class="text-muted">
-        <tr>
-          <th scope="col">Product</th>
-          <th scope="col" width="120">Quantity</th>
-          <th scope="col" width="120">Price</th>
-          <th scope="col" width="200" class="text-right">Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let data of result.cartList; index as i;">
-            <td>
-                <figure class="media">
-                    <div class="img-wrap"><img src={{data.picture}} class="img-thumbnail img-sm"></div>
-                    <figcaption class="media-body">
-                        <h6 class="title text-truncate">{{data.name}} </h6>
-                        <dl class="param param-inline small">
-                        <dt>Đơn vị: {{data.unit}} </dt>
-                        </dl>
-                    </figcaption>
-                </figure> 
-            </td>
-    
-            <td> 
-                <select class="form-control">
-                    <option>1</option>
-                    <option>2</option>	
-                    <option>3</option>	
-                    <option>4</option>	
-                </select> 
-            </td>
-    
-            <td> 
-                <div class="price-wrap"> 
-                    <var class="price">Giá: {{data.price}}</var> 
-                    <small class="text-muted">VNĐ</small> 
-                </div> <!-- price-wrap .// -->
-            </td>
-    
-            <td class="text-right"> 
-                <a href="" class="btn btn-outline-danger"> × Remove</a>
-            </td>
-        </tr>
-        </tbody>
-        </table>
-        </div> <!-- card.// -->
-        
+<br />
+<br />
+<h1>{{itemAmount}}</h1>
+<div class="container" *ngIf = "result.cartList.length == 0">
+    <div class="card">
+        <div class="cart-empty">
+            <div class="content_emty text-center">
+                <img class="space_bottom_20" alt="" src="https://hasaki.vn/images/graphics/img_lb_empty.gif">
+                <div class="txt_empty_1">Bạn chưa chọn sản phẩm.<p></p>
+                    <div><a class="btn btn-success" [routerLink]="['/']">Tiếp tục mua sắm</a> </div>
+                </div>
+            </div>
         </div>
+    </div> <!-- card.// -->
+</div>
+<div class="container" *ngIf = "result.cartList.length > 0">
+    <div class="card">
+        <table class="table table-hover shopping-cart-wrap">
+            <thead class="text-muted">
+                <tr>
+                    <th scope="col">Sản phẩm</th>
+                    <th scope="col" width="120">Số lượng</th>
+                    <th scope="col" width="120">Giá</th>
+                    <th scope="col" width="200" class="text-right"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of result.cartList; index as i;">
+                    <td>
+                        <figure class="media">
+                            <div class="img-wrap"><img src={{data.picture}} class="img-thumbnail img-sm"></div>
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate">{{data.name}} </h6>
+                                <dl class="param param-inline small">
+                                    <dt>Đơn vị: {{data.unit}} </dt>
+                                </dl>
+                            </figcaption>
+                        </figure>
+                    </td>
+
+                    <td>
+                        <input type="number" id="{{data.productId}}" class="form-control"
+                         (onclick)="checkItemAmoutInCart()" value="1">
+                    </td>
+
+                    <td>
+                        <div class="price-wrap">
+                            <var class="price">Giá: {{data.price}}</var>
+                            <small class="text-muted">VNĐ</small>
+                        </div> <!-- price-wrap .// -->
+                    </td>
+
+                    <td class="text-right">
+                        <button class="btn btn-outline-danger"
+                            (click)="removeItemFromCart(data.account, data.productId)"> × Xóa</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> <!-- card.// -->
+    <a href="https://hasaki.vn/checkout/" class="btn btn-warning" title="Tiến hành đặt hàng" style="float: right;">
+        <span>Tiến hành đặt hàng</span>
+    </a>
+</div>
+
+
 </html>

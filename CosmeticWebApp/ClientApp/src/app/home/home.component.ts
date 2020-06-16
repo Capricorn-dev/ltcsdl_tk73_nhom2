@@ -329,7 +329,7 @@ export class HomeComponent {
                     }
                 },
                 error => {
-                    alert("Server error!!")
+                    alert("Bạn đã thêm sản phẩm này vào giỏ hàng rồi")
                 });
             
         }
