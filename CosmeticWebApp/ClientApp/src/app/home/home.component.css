@@ -6,10 +6,15 @@
 
   .card{
     width: 264px; 
+    height: 670px;
     margin-left: 11px;
     margin-top: 20px;
     box-shadow: 1px 1px 20px 2px black;
     background: linear-gradient(to bottom, #ffffff 50%, #ccffff 100%);
+  }
+  .card-title{
+    height: 50px;
+    text-align: left;
   }
   #search{
     width: 500px;
