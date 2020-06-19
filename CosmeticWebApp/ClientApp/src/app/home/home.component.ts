@@ -15,7 +15,7 @@ export class HomeComponent {
     cart: any = {
         account: "",
         productId: "",
-        amounts: 0,
+        amounts: 1,
         note: ""
     }
     //Các biến phân trang

@@ -2,7 +2,6 @@
 <html>
 <br />
 <br />
-<h1>{{itemAmount}}</h1>
 <div class="container" *ngIf = "result.cartList.length == 0">
     <div class="card">
         <div class="cart-empty">
@@ -14,7 +13,7 @@
             </div>
         </div>
     </div> <!-- card.// -->
-</div>
+</div>  
 <div class="container" *ngIf = "result.cartList.length > 0">
     <div class="card">
         <table class="table table-hover shopping-cart-wrap">
@@ -39,10 +38,8 @@
                             </figcaption>
                         </figure>
                     </td>
-
                     <td>
-                        <input type="number" id="{{data.productId}}" class="form-control"
-                         (onclick)="checkItemAmoutInCart()" value="1">
+                            <input id="{{'cartItemAmount' + i}}" type="number" [(ngModel)]="cartItemAmount[i]" class="form-control" value="1">
                     </td>
 
                     <td>
@@ -60,7 +57,7 @@
             </tbody>
         </table>
     </div> <!-- card.// -->
-    <a href="https://hasaki.vn/checkout/" class="btn btn-warning" title="Tiến hành đặt hàng" style="float: right;">
+    <a (click)="customerOrder()" class="btn btn-warning" title="Tiến hành đặt hàng" style="float: right;">
         <span>Tiến hành đặt hàng</span>
     </a>
 </div>

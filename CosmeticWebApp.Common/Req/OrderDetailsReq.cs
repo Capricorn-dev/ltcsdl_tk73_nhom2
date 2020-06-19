@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CosmeticWebApp.Common.Req
 {
-    public class OrderDetailReq
+    public class OrderDetailsReq
     {
         public int OrderId { get; set; }
         public String ProductId { get; set; }

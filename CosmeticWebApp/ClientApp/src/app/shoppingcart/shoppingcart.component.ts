@@ -12,12 +12,24 @@ declare var $: any;
 export class ShoppingcartComponent {
     itemAmount: number = 1;
     userLogin: String = document.getElementById("btnUserName").textContent;
+    cartItemAmount: number[]= [];
     result: any = {
         cartList: []
     }
+    
     constructor(private http?: HttpClient, @Inject('BASE_URL') baseUrl?: string,
     private router?: Router) {
         this.getCartByAccount(this.userLogin);
+      
+    }
+    // ngOnInit() {
+    //     var test =  (document.getElementById("cartItemAmount0") as HTMLInputElement);
+    //         console.log(test);
+    //  }
+    ngAfterViewInit()
+    {
+        // var test =  document.getElementById("cartItemAmount0");
+        //     console.log(test);
     }
     productId: String = document.getElementById("btnlogin").textContent;
     getCartByAccount(account: String)
@@ -29,6 +41,12 @@ export class ShoppingcartComponent {
                     //Thu được dữ liệu
                     if (res != null) {
                         this.result = res;
+                          //Khởi tạo biến amount
+                        for(var i = 0; i < this.result.cartList.length; i++)
+                        {
+                            this.cartItemAmount.push(this.result.cartList[i].amounts);
+                        }
+                       
                     }
                     //Không thu được dữ liệu
                     else {
@@ -61,13 +79,10 @@ export class ShoppingcartComponent {
                 });
         
     }
-    //Amount
-    checkItemAmoutInCart()
+    //Order
+    customerOrder()
     {
-        alert("changed");
-        // $(":input").bind('keyup mouseup', function () {
-        //     alert("changed");            
-        // });
+        this.router.navigate(['/customer-order', {amountList: this.cartItemAmount}]);
     }
     
 }

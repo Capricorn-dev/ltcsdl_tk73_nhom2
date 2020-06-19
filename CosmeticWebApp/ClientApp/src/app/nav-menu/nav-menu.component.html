@@ -72,7 +72,7 @@
         <a id="a-hover" class="nav-link" [routerLink]="['/order']" >Đơn hàng</a>
       </li>
       <li class="nav-item" [routerLinkActive]="['link-active']">
-        <a id="a-hover" class="nav-link" [routerLink]="['/profile']"><i class="fas fa-user"></i> User</a>
+        <a id="a-hover" class="nav-link" [routerLink]="['/profile']"><i class="fas fa-user"></i> Người dùng</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="a-hover" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -91,10 +91,10 @@
   <div class="flex-sm-row-reverse">
     <form class="form-inline">
       <button id="btnShopingCast" type="button" class="btn btn-outline-light my-2 my-sm-0" [routerLink]="['/shoppingcart']">
-        <i class="fas fa-shopping-cart"></i> Shopping Cart
+        <i class="fas fa-shopping-cart"></i> Giỏ hàng
       </button>
       <button id="btnlogin" type="button" class="btn btn-outline-light my-2 my-sm-0" (click)="openLoginModal()" >
-        <i class="fas fa-sign-in-alt"></i> Login
+        <i class="fas fa-sign-in-alt"></i> Đăng nhập
       </button>
 
       <button id="btnUserName" type="button" class="btn btn-outline-light my-2 my-sm-0" *ngIf="user.data.resultAccount==true && user.data.resultPassword==true" [routerLink]="['/profile']">
@@ -102,7 +102,7 @@
       </button>
 
       <button id="btnLogout" type="button" class="btn btn-outline-light my-2 my-sm-0" *ngIf="user.data.resultAccount==true && user.data.resultPassword==true" onClick="window.location.href=window.location.href">
-        <i class="	fas fa-sign-out-alt"></i> Sign out 
+        <i class="	fas fa-sign-out-alt"></i> Đăng xuất
       </button>
     </form>
   </div>

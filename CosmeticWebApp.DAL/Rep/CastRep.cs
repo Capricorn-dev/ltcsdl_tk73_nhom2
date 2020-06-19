@@ -1,5 +1,8 @@
-﻿using CosmeticWebApp.DAL.Model;
+﻿using CosmeticWebApp.Common.Req;
+using CosmeticWebApp.DAL.Model;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,18 +38,26 @@ namespace CosmeticWebApp.DAL.Rep
             }
         }
         //Sửa
-        public object UpdateAmount(String account, String productId, int amount)
+        public object UpdateAmount(UpdateCartReq req)
         {
             using (var tran = _context.Database.BeginTransaction())
             {
-                var result = _context.Cart.FirstOrDefault(c => c.Account == account && c.ProductId == productId);
-                result.Amounts = amount;
+                List<Cart> resultList = new List<Cart>();
+                int index = 0;
+                foreach (String productId in req.ProductIdList)
+                {
+                    var result = _context.Cart.FirstOrDefault(c => c.Account == req.Account && c.ProductId == productId);
+                    result.Amounts = req.Amount[index];
+                    resultList.Add(result);
+                    index++;
+                }    
+               
                 try
                 {
-                    _context.Cart.Update(result);
+                    _context.Cart.UpdateRange(resultList);
                     _context.SaveChanges();
                     tran.Commit();
-                    return result;
+                    return resultList;
                 }
                 catch (Exception ex)
                 {
@@ -96,6 +107,7 @@ namespace CosmeticWebApp.DAL.Rep
                 p.Unit,
                 p.Price,
                 p.Picture,
+                c.Amounts,
                 c.Account,
                 c.ProductId
             }).ToArray();

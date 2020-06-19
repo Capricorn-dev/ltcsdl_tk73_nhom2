@@ -7,23 +7,23 @@ using System.Text;
 
 namespace CosmeticWebApp.DAL.Rep
 {
-    public class OrderDetailRep
+    public class OrderDetailsRep
     {
         //Khởi tạo đối tượng context
         private CosmeticContext _context;
         //Phương thức khởi tạo
-        public OrderDetailRep()
+        public OrderDetailsRep()
         {
             _context = new CosmeticContext(); //Sử dụng thay cho using var context
         }
         //Tạo
-        public object Create(OrderDetails orderDetails)
+        public object Create(List<OrderDetails> orderDetails)
         {
             using (var tran = _context.Database.BeginTransaction())
             {
                 try
                 {
-                    _context.OrderDetails.Add(orderDetails);
+                    _context.OrderDetails.AddRange(orderDetails);
                     _context.SaveChanges();
                     tran.Commit();
                     return orderDetails;

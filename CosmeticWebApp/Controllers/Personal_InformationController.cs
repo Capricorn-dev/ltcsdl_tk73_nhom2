@@ -28,10 +28,10 @@ namespace CosmeticWebApp.Controllers
             return Ok(result);
         }
         //Sửa
-        [HttpPost("updatePersonal_Information")]
-        public IActionResult UpdatePersonal_Information(Personal_InformationReq req)
+        [HttpPatch("updatePersonal_InformationPatch/{account}")]
+        public IActionResult UpdatePersonal_InformationPatch(String account, Personal_InformationReq req)
         {
-            var result = _svc.UpdatePersonal_Information(req);
+            var result = _svc.UpdatePersonal_Information(account, req);
             return Ok(result);
         }
         //Kiểm tra đăng nhập
@@ -40,6 +40,11 @@ namespace CosmeticWebApp.Controllers
         {
             var result = _svc.CheckLogin(req);
             return Ok(result);
+        }
+        [HttpGet("getCustomerByAccount/{account}")]
+        public object GetCustomerByAccount(String account)
+        {
+            return Ok(_svc.GetCustomerByAccount(account));
         }
     }
 }

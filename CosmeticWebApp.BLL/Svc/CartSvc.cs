@@ -33,11 +33,11 @@ namespace CosmeticWebApp.BLL.Svc
             return _rep.Create(cart);
         }
         //Sửa
-        public object UpdateCartAmount(String account, String productId, int amount)
+        public object UpdateCartAmount(UpdateCartReq req)
         {
             //Gán giá trị vào bảng
             //Trả về giá trị
-            return _rep.UpdateAmount(account, productId, amount);
+            return _rep.UpdateAmount(req);
         }
         //Tìm
         public object GetCustomerCart(String account)

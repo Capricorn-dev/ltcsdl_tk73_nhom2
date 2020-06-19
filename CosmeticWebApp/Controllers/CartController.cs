@@ -33,15 +33,15 @@ namespace CosmeticWebApp.Controllers
             return Ok(result);
         }
         [HttpPut("updateCartAmountPut/{account},{productId},{amount}")]
-        public IActionResult UpdateCartAmountPut(String account, String productId, int amount)
+        public IActionResult UpdateCartAmountPut(UpdateCartReq req)
         {
-            var result = _svc.UpdateCartAmount(account, productId, amount);
+            var result = _svc.UpdateCartAmount(req);
             return Ok(result);
         }
         [HttpPatch("updateCartAmountPatch/{account},{productId},{amount}")]
-        public IActionResult UpdateCartAmountPatch(String account, String productId, int amount)
+        public IActionResult UpdateCartAmountPatch(UpdateCartReq req)
         {
-            var result = _svc.UpdateCartAmount(account, productId, amount);
+            var result = _svc.UpdateCartAmount(req);
             return Ok(result);
         }
         [HttpDelete("deleteCart/{account},{productId}")]
