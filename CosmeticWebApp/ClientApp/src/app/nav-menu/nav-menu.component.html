@@ -130,7 +130,7 @@
         <label for="psw"><b>Mật khẩu</b></label>
         <input type="password" placeholder="Mật khẩu" name="psw" required [(ngModel)]="data.password">
           
-        <button id="button" type="submit" (click)="checkLogin()">Đăng nhập</button>
+        <button id="button" type="submit" (click)="checkLogin()" >Đăng nhập</button>
         <button id="button" type="submit" [routerLink]="['/signup']" data-dismiss="modal">Đăng kí</button>
         <label>
           <input type="checkbox" checked="checked" name="remember"> Nhớ mật khẩu
@@ -138,8 +138,8 @@
       </div>
   
       <div class="container" style="background-color:#f1f1f1">
-        <button type="button" class="cancelbtn" data-dismiss="modal" aria-label="Close">Thoát</button>
-        <a href="#">Quên mật khẩu?</a>
+        <button type="button" class="cancelbtn" aria-label="Close" data-dismiss="modal">Thoát</button>
+        <a href="#" style="margin-left: 20px;">Quên mật khẩu?</a>
       </div>
     </form>
   </div>

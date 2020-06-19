@@ -68,6 +68,7 @@ export class NavMenuComponent {
               {
                 //Chỉ hiện thị giỏ hàng khi đã đăng nhập
                 document.getElementById("btnShopingCast").style.visibility = "visible";
+                document.getElementById("btnlogin").style.visibility = "hidden";
                 //Set text khi đăng nhập
                 this.userLogin = this.user.data.account;
                 this.toggleLoginModal();
@@ -76,23 +77,17 @@ export class NavMenuComponent {
           //Không thu được dữ liệu
           else {
               alert(res.message);
+              document.getElementById("btnlogin").style.visibility = "visible";
           }
           
       },
       error => {
           alert("Server error!!")
       });
-      var x = document.getElementById("btnlogin");
-      if (x.style.display === "none") {
-        x.style.display = "block";
-      } else {
-        x.style.display = "none";
-      }
   }
   toggleLoginModal() {
-    $('#LoginModal').modal('toggle');
+    $('#LoginModal').modal('hide');
   }
-  
 }
 
 
