@@ -25,7 +25,7 @@ export class CustomersOrderComponent {
         accountTypeID: "",
         createdDate: "",
         accountStatus: "",
-        note: "note",
+        note: "",
     }
     //Chia địa chỉ ra
     addressList: String[];
@@ -146,7 +146,7 @@ export class CustomersOrderComponent {
     }
     updateUserInfo() {
         this.user.address = this.address + "," + this.ward + "," + this.district + "," + this.city;
-        this.http.patch<any>('https://localhost:44394/api/Personal_Information/updatePersonal_InformationPatch/'
+        this.http.put<any>('https://localhost:44394/api/Personal_Information/updatePersonal_Information/'
             + this.userLogin, this.user).subscribe(
                 result => {
                     var res: any = result;

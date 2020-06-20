@@ -16,6 +16,7 @@
           <div>Địa chỉ: {{user.address}}</div>
           <div>SĐT: {{user.phoneNumber}}</div>
           <div>Email: {{user.email}}</div>
+          <div>Ghi chú: {{user.note}}</div>
           <button type="button" class="btn btn-success float-right" (click)="openCreateUpdateModal()">Chỉnh sửa thông
             tin</button>
         </div>
@@ -188,7 +189,7 @@
             Ghi chú
           </div>
           <div class="col-12">
-            <textarea class="form-control" rows=3 [(ngModel)]="order.note"></textarea>
+            <textarea class="form-control" rows=3 [(ngModel)]="user.note"></textarea>
           </div>
         </div>
         <div class="modal-footer">

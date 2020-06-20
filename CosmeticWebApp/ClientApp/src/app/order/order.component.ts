@@ -27,7 +27,6 @@ export class OrderComponent {
         {statusName: "Chưa duyệt"},
         {statusName: "Đã duyệt"},
         {statusName: "Đang giao"},
-        {statusName: "Tất cả đơn hàng"}
     ];
     constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
         this.searchOrder();
@@ -53,5 +52,24 @@ export class OrderComponent {
                     alert("Server error!!")
                 });
     }
+    //Các hàm liên quan đến phân trang
+  goNext() {
+    if (this.orders.page < this.orders.totalPages) {
+      this.page = this.page + 1;
+      this.searchOrder();
+    }
+    else {
+      alert("Bạn đang ở trang cuối !!!")
+    }
+  }
+  goPrevious() {
+    if (this.orders.page > 1) {
+      this.page = this.page - 1;
+      this.searchOrder();
+    }
+    else {
+      alert("Bạn đang ở trang đầu !!!")
+    }
+  }
     //Options Handle
 }

@@ -68,7 +68,7 @@ export class NavMenuComponent {
               {
                 //Chỉ hiện thị giỏ hàng khi đã đăng nhập
                 document.getElementById("btnShopingCast").style.visibility = "visible";
-                document.getElementById("btnlogin").style.visibility = "hidden";
+                document.getElementById("btnlogin").style.display = "none";
                 //Set text khi đăng nhập
                 this.userLogin = this.user.data.account;
                 this.toggleLoginModal();

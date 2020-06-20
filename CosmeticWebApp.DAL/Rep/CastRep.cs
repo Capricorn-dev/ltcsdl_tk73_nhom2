@@ -99,6 +99,7 @@ namespace CosmeticWebApp.DAL.Rep
         }
         public object GetCustomerCart(String account)
         {
+            
              var result = _context.Cart
             .Where(c => c.Account == account)
             .Join(_context.Product, c => c.ProductId, p => p.ProductId, (c, p) => new

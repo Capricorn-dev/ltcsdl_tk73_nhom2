@@ -45,3 +45,13 @@
         </tr>
     </tbody>
 </table>
+<!--Phân trang-->
+<ul class="pagination">
+    <li>
+      <a type="button" class="btn btn-secondary" href="javascprit:void(0)" (click)="goPrevious()">Previous</a>
+    </li>
+    <li class="btn btn-outline-secondary" style="margin-left: 10px;">{{orders.page}}</li>
+    <li style="margin-left: 10px;">
+      <a type="button" class="btn btn-secondary" href="javascprit:void(0)" (click)="goNext()">Next</a>
+    </li>
+</ul>

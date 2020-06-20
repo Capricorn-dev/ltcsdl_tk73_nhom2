@@ -28,7 +28,7 @@ namespace CosmeticWebApp.Controllers
             return Ok(result);
         }
         //Sửa
-        [HttpPatch("updatePersonal_InformationPatch/{account}")]
+        [HttpPut("updatePersonal_Information/{account}")]
         public IActionResult UpdatePersonal_InformationPatch(String account, Personal_InformationReq req)
         {
             var result = _svc.UpdatePersonal_Information(account, req);
