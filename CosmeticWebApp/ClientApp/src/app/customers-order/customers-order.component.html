@@ -1,0 +1,201 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      Ngày hôm nay
+      <strong>{{nowDate | date: "dd-MM-yyyy"}}</strong>
+      <span class="float-right"> <strong>Trạng thái: </strong> Tiến hành đặt hàng</span>
+    </div>
+
+    <div class="card-body">
+      <div class="row mb-4">
+        <div class="col-sm-6">
+          <h6 class="mb-3">Thông tin cá nhân: </h6>
+          <div>
+            <strong>Họ tên: {{user.lastName}} {{user.firstName}}</strong>
+          </div>
+          <div>Địa chỉ: {{user.address}}</div>
+          <div>SĐT: {{user.phoneNumber}}</div>
+          <div>Email: {{user.email}}</div>
+          <button type="button" class="btn btn-success float-right" (click)="openCreateUpdateModal()">Chỉnh sửa thông
+            tin</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-responsive-sm">
+      <table class="table table-hover shopping-cart-wrap">
+        <thead class="text-muted">
+          <tr>
+            <th scope="col" >Sản phẩm</th>
+            <th scope="col" width="120" style="text-align: center;">Số lượng</th>
+            <th scope="col" width="200">Giá</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of result.cartList; index as i;">
+            <td>
+              <figure class="media">
+                <div class="img-wrap"><img src={{data.picture}} class="img-thumbnail img-sm"></div>
+                <figcaption class="media-body">
+                  <h6 class="title text-truncate">{{data.name}} </h6>
+                  <dl class="param param-inline small">
+                    <dt>Đơn vị: {{data.unit}} </dt>
+                  </dl>
+                </figcaption>
+              </figure>
+            </td>
+            <td>
+             <h6 style="text-align: center;">{{cartItemAmount[i]}}</h6>
+            </td>
+
+            <td>
+              <div class="price-wrap">
+                <var class="price">Giá: {{data.price}}</var>
+                <small class="text-muted">VNĐ</small>
+              </div> <!-- price-wrap .// -->
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="col-lg-4 col-sm-5 ml-auto">
+      <table class="table table-clear">
+          <tbody>
+              <tr>
+                  <td class="left">
+                  <strong>Tạm tính: {{subtotal}} VNĐ</strong>
+                  </td>
+                  <td class="right"></td>
+              </tr>
+
+              <tr>
+                  <td class="left">
+                  <strong>Khuyến mãi: {{discount}} VNĐ</strong>
+                  </td>
+                  <td class="right"></td>
+              </tr>
+
+              <tr>
+                  <td class="left">
+                  <strong>Thuế VAT: {{VATtax}} VNĐ</strong>
+                  </td>
+                  <td class="right"></td>
+              </tr>
+
+              <tr>
+                  <td class="left">
+                  <strong>Tổng cộng: {{total}} VNĐ</strong>
+                  </td>
+                  <td class="right">
+                  <strong></strong>
+                  </td>
+              </tr>
+              <tr>
+                <button type="button" class="btn btn-primary" (click)="customerOrder()">Đặt hàng</button>
+            </tr>
+          </tbody>
+      </table>
+  </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="openUpateUserInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa thông tin cá nhân</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-3">
+            Họ
+          </div>
+          <div class="col-3">
+            <input class="form-control" [(ngModel)]="user.lastName" />
+          </div>
+          <div class="col-3">
+            Tên
+          </div>
+          <div class="col-3">
+            <input class="form-control" [(ngModel)]="user.firstName" />
+          </div>
+        </div>
+        <br />
+        <!---->
+        <div class="row">
+          <div class="col-3">
+            Số điện thoại
+          </div>
+          <div class="col-9">
+            <input class="form-control" [(ngModel)]="user.phoneNumber" />
+          </div>
+        </div>
+        <br />
+        <!---->
+        <div class="row">
+          <div class="col-3">
+            Email
+          </div>
+          <div class="col-9">
+            <input class="form-control" [(ngModel)]="user.email" />
+          </div>
+        </div>
+        <br />
+        <!---->
+        <div class="row">
+          <div class="col-12">
+            Địa chỉ
+          </div>
+        </div>
+        <!---->
+        <div class="row">
+          <div class="col-12">
+            <textarea class="form-control" rows=3 [(ngModel)]="address"></textarea>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-1">
+            Phường
+          </div>
+          <div class="col-3">
+            <input class="form-control" [(ngModel)]="ward" />
+          </div>
+          <div class="col-1">
+            Quận
+          </div>
+          <div class="col-3">
+            <input class="form-control" [(ngModel)]="district" />
+          </div>
+          <div class="col-1">
+            Thành phố
+          </div>
+          <div class="col-3">
+            <input class="form-control" [(ngModel)]="city" />
+          </div>
+        </div>
+
+        <!---->
+        <div class="row">
+          <div class="col-12">
+            Ghi chú
+          </div>
+          <div class="col-12">
+            <textarea class="form-control" rows=3 [(ngModel)]="order.note"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="getUserByAccount()">Thoát</button>
+          <button type="button" class="btn btn-primary" (click)="updateUserInfo()">Sửa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

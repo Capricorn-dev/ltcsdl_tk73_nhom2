@@ -67,5 +67,7 @@ namespace CosmeticWebApp.DAL.Model
         public String Note { get; set; }
 
         public ICollection<OrderDetails> OrderDetails { get; set; } //Được sử dụng bởi chi tiết đơn hàng
+
+        public ICollection<Cart> Cart { get; set; } //Được sử dụng bởi giỏ hàng
     }
 }

@@ -31,45 +31,55 @@ namespace CosmeticWebApp.DAL.Rep
             }
         }
         //Sửa
-        public object Update(Personal_Information personalInformation)
+        public object Update(String account, Personal_InformationReq req)
         {
-            try
+            using (var tran = _context.Database.BeginTransaction())
             {
-                //Khởi tạo đối tượng tìm id trong bảng
-                //Tìm id
-                //Đây là row dữ liệu trả về theo ID
-                var searchResult = _context.Personal_Information.FirstOrDefault(value => value.Account == personalInformation.Account);
-                //Tìm thấy
-                if (searchResult != null)
+                try
                 {
-                    //Gán giá trị qua search result
-                    //Không gán mã
-                    searchResult.Pass = personalInformation.Pass;
-                    searchResult.LastName = personalInformation.LastName;
-                    searchResult.FirstName = personalInformation.FirstName;
-                    searchResult.DateOfBirth = personalInformation.DateOfBirth;
-                    searchResult.Gender = personalInformation.Gender;
-                    searchResult.Address = personalInformation.Address;
-                    searchResult.PhoneNumber = personalInformation.PhoneNumber;
-                    searchResult.Email = personalInformation.Email;
-                    searchResult.AccountTypeID = personalInformation.AccountTypeID;
-                    searchResult.AccountStatus = personalInformation.AccountStatus;
-                    searchResult.Note = personalInformation.Note;
-                    //Thay đổi theo search result. Không thay đổi theo tham số truyền vào vì sẽ bị duplicate
-                    _context.Personal_Information.Update(searchResult);
-                    _context.SaveChanges();
-                    return searchResult;
+                    //Khởi tạo đối tượng tìm id trong bảng
+                    //Tìm id
+                    //Đây là row dữ liệu trả về theo ID
+                    var searchResult = _context.Personal_Information.FirstOrDefault(value => value.Account == account);
+                    //Tìm thấy
+                    if (searchResult != null)
+                    {
+                        //Gán giá trị qua search result
+                        //Không gán mã
+                        searchResult.Pass = req.Pass;
+                        searchResult.LastName = req.LastName;
+                        searchResult.FirstName = req.FirstName;
+                        searchResult.DateOfBirth = req.DateOfBirth;
+                        searchResult.Gender = req.Gender;
+                        searchResult.Address = req.Address;
+                        searchResult.PhoneNumber = req.PhoneNumber;
+                        searchResult.Email = req.Email;
+                        searchResult.AccountTypeID = req.AccountTypeID;
+                        searchResult.AccountStatus = req.AccountStatus;
+                        searchResult.Note = req.Note;
+                        //Thay đổi theo search result. Không thay đổi theo tham số truyền vào vì sẽ bị duplicate
+                        _context.Personal_Information.Update(searchResult);
+                        _context.SaveChanges();
+                        tran.Commit();
+                        return searchResult;
+                    }
+                    //Không tìm thấy
+                    else
+                    {
+                        return "Unable to update: not found ID.";
+                    }
                 }
-                //Không tìm thấy
-                else
+                catch (Exception ex)
                 {
-                    return "Unable to update: not found ID.";
-                } 
+                    tran.Rollback();
+                    return ex.StackTrace; //Xuất ra lỗi
+                }
             }
-            catch (Exception ex)
-            {
-                return ex.StackTrace; //Xuất ra lỗi
-            }
+        }
+        public object GetCustomerByAccount(String account)
+        {
+            var search = _context.Personal_Information.FirstOrDefault(value => value.Account == account);
+            return search;
         }
         public object CheckLogin(AccountReq req)
         { 
@@ -78,6 +88,9 @@ namespace CosmeticWebApp.DAL.Rep
             //Khởi tạo giá trị trả về
             Boolean resultAccount = false;
             Boolean resultPassword = false;
+            String account = null;
+            String phoneNumber = null;
+            String email = null;
             if (search != null)
             {
                 resultAccount = true;
@@ -85,6 +98,9 @@ namespace CosmeticWebApp.DAL.Rep
                 if (search.Pass.Equals(req.Password)) //Kiểm tra mật khẩu
                 {
                     resultPassword = true;
+                    account = search.Account;
+                    phoneNumber = search.PhoneNumber;
+                    email = search.Email;
                 }
             }
             //Giá trị
@@ -92,6 +108,9 @@ namespace CosmeticWebApp.DAL.Rep
             {
                 ResultAccount = resultAccount,
                 ResultPassword = resultPassword,
+                Account = account,
+                PhoneNumber = phoneNumber,
+                Email = email
             };
             //Kết quả
             var result = new

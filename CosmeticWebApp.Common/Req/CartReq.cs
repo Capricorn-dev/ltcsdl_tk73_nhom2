@@ -4,9 +4,9 @@ using System.Text;
 
 namespace CosmeticWebApp.Common.Req
 {
-    public class OrderDetailReq
+    public class CartReq
     {
-        public int OrderId { get; set; }
+        public String Account { get; set; }
         public String ProductId { get; set; }
         public int Amounts { get; set; }
         public String Note { get; set; }

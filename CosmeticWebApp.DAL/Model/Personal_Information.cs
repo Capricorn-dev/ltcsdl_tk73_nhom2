@@ -76,5 +76,6 @@ namespace CosmeticWebApp.DAL.Model
 
         public virtual ICollection<Orders> OrdersByEmp { get; set; } //Được sử dụng bởi đơn hàng
         public virtual ICollection<Orders> OrdersByCus { get; set; } //Được sử dụng bởi đơn hàng
+        public virtual ICollection<Cart> Cart { get; set; } //Được sử dụng bởi giỏ hàng
     }
 }

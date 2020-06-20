@@ -38,30 +38,18 @@ namespace CosmeticWebApp.BLL.Svc
             return _rep.Create(personalInformation);
         }
 
-        public object UpdatePersonal_Information(Personal_InformationReq req)
+        public object UpdatePersonal_Information(String account, Personal_InformationReq req)
         {
-            //Khởi tạo đối tượng
-            Personal_Information personalInformation = new Personal_Information();
-            //Gán giá trị
-            personalInformation.Account = req.Account;
-            personalInformation.Pass = req.Pass;
-            personalInformation.LastName = req.LastName;
-            personalInformation.FirstName = req.FirstName;
-            personalInformation.DateOfBirth = req.DateOfBirth;
-            personalInformation.Gender = req.Gender;
-            personalInformation.Address = req.Address;
-            personalInformation.PhoneNumber = req.PhoneNumber;
-            personalInformation.Email = req.Email;
-            personalInformation.AccountTypeID = req.AccountTypeID; //Chỉ chính xác là đối tượng khóa ngoại
-            personalInformation.CreatedDate = req.CreatedDate;
-            personalInformation.AccountStatus = req.AccountStatus;
-            personalInformation.Note = req.Note;
-            //Truyền giá trị
-            return _rep.Update(personalInformation);
+            
+            return _rep.Update(account, req);
         }
         public object CheckLogin(AccountReq req)
         {
             return _rep.CheckLogin(req);
+        }
+        public object GetCustomerByAccount(String account)
+        {
+            return _rep.GetCustomerByAccount(account);
         }
     }
 }

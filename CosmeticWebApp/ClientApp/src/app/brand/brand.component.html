@@ -1,0 +1,186 @@
+<h1 id="tableLabel">Thương hiệu</h1>
+<div *ngIf = "checkLoading == false" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<button *ngIf = "checkLoading == true" type="button" class="btn btn-outline-dark" (click)="openCreateUpdateModal(false, null)">Thêm thương hiệu
+    mới</button>
+<div *ngIf = "checkLoading == true" class="row" style="margin-top: 10px; margin-bottom: 10px;">
+    <div class="col-2">
+        <h5>Cài đặt</h5>
+    </div>
+    <div class="col-2">Kích thước bảng: </div>
+    <div class="col-1"><input class="form-control" [(ngModel)]="size" /> </div>
+    <div class="col-2">Trang thứ: </div>
+    <div class="col-1"><input class="form-control" [(ngModel)]="page" /> </div>
+    <div class="col-1">Từ khóa: </div>
+    <div class="col-1"><input class="form-control" [(ngModel)]="keyWord" /> </div>
+    <div class="col-2"><button (click)= "searchBrands()" type="button" class="btn btn-dark">Xác nhận</button></div>
+</div>
+
+<h1 *ngIf="brands.totalRecords == 0 && checkLoading == true"><em>Không có dữ liệu "{{keyWord}}"</em></h1>
+<table *ngIf = "checkLoading == true && brands.totalRecords > 0" class='table table-bordered' aria-labelledby="tableLabel">
+    <thead>
+        <tr>
+            <th>Mã thương hiệu</th>
+            <th>Tên</th>
+            <th>Số điện thoại</th>
+            <th>Ngày hợp tác</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of brands.data; index as i;">
+            <td>{{ data.brandId }}</td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.phoneNumber }}</td>
+            <td>{{ data.startedDate | date:'dd-MM-yyyy' }}</td>
+            <!--Display current date-->
+            <td>
+                <button type="button" class="btn btn-outline-info" (click)="specificInformation(i)"> Xem cụ thể</button>
+                <button type="button" class="btn btn-outline-warning" style="margin-left: 10px;"
+                    (click)="openCreateUpdateModal(true, i)">Sửa</button>
+                <button type="button" class="btn btn-outline-danger" style="margin-left: 10px;"
+                    (click)="deleteCategory(data.brandId)">Xóa</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!--Phân trang-->
+<ul *ngIf = "checkLoading == true && brands.totalRecords > 0" class="pagination">
+    <li>
+        <a href="javascprit:void(0)" type="button" class="btn btn-secondary" (click)="goPrevious()">Previous</a>
+    </li>
+    <li class="btn btn-outline-secondary" style="margin-left: 10px;">{{brands.page}}</li>
+    <li style="margin-left: 10px;">
+        <a href="javascprit:void(0)" type="button" class="btn btn-secondary" (click)="goNext()">Next</a>
+    </li>
+</ul>
+<!-- Specific Information Modal -->
+<div class="modal fade" id="specificInformationModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Thông tin thương hiệu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><em>Mã danh mục: </em>{{brand.brandId}}</p>
+                <p><em>Tên: </em>{{brand.name}}</p>
+                <p><em>Email: </em>{{brand.email}}</p>
+                <p><em>Số điện thoại: </em>{{brand.phoneNumber}}</p>
+                <p><em>Ngày tạo: </em>{{brand.startedDate | date:'dd-MM-yyyy'}}</p>
+                <p><em>Mô tả: </em>{{brand.description}}</p>
+                <p><em>Ghi chú: </em>{{brand.note}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal-->
+<div class="modal fade" id="openCreateUpdateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 *ngIf="!isEdit" class="modal-title" id="exampleModalLabel">Tạo thương hiệu</h5>
+                <h5 *ngIf="isEdit" class="modal-title" id="exampleModalLabel">Sửa thương hiệu</h5>
+                <button (click)="searchBrands(brands.page)" type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-9">
+
+                    </div>
+                    <div class="col-3">
+                        <p>* là bắt buộc nhập</p>
+                    </div>
+                </div>
+                <br />
+                <!---->
+                <div class="row">
+                    <div class="col-3">
+                        Mã thương hiệu *
+                    </div>
+                    <div class="col-9">
+                        <input [disabled]="isEdit" class="form-control" [(ngModel)]="brand.brandId" />
+                    </div>
+                </div>
+                <br />
+                <!---->
+                <div class="row">
+                    <div class="col-3">
+                        Tên thương hiệu *
+                    </div>
+                    <div class="col-9">
+                        <input class="form-control" [(ngModel)]="brand.name" />
+                    </div>
+                </div>
+                <br />
+                <!---->
+                <div class="row">
+                    <div class="col-3">
+                        Ngày hợp tác *
+                    </div>
+                    <div class="col-9">
+                        <input [disabled]="brands.startedDate != 0" class="form-control" [(ngModel)]="dateDisplay" />
+                    </div>
+                </div>
+                <br />
+                <!---->
+                <div class="row">
+                    <div class="col-2">
+                        Email *
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control" [(ngModel)]="brand.email" />
+                    </div>
+                    <div class="col-2">
+                        Số điện thoại*
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control" [(ngModel)]="brand.phoneNumber" />
+                    </div>
+                </div>
+                <br />
+                <!---->
+                <div class="row">
+                    <div class="col-12">
+                        Mô tả
+                    </div>
+                </div>
+                <!---->
+                <div class="row">
+                    <div class="col-12">
+                        <textarea class="form-control" rows=3 [(ngModel)]="brand.description"></textarea>
+                    </div>
+                </div>
+                <!---->
+                <div class="row">
+                    <div class="col-12">
+                        Ghi chú
+                    </div>
+                    <div class="col-12">
+                        <textarea class="form-control" rows=3 [(ngModel)]="brand.note"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button button (click)="searchBrands(brands.page)" type="button" class="btn btn-secondary"
+                        data-dismiss="modal">Thoát</button>
+                    <button *ngIf="!isEdit" type="button" class="btn btn-success" (click)="createBrand()">Tạo danh
+                        mục</button>
+                    <button *ngIf="isEdit" type="button" class="btn btn-primary" (click)="updateBrand()">Sửa danh
+                        mục</button>
+                </div>
+            </div>
+        </div>
+    </div>

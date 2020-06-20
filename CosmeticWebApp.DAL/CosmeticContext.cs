@@ -24,10 +24,12 @@ namespace CosmeticWebApp.DAL
         public DbSet<Product> Product { get; set; }
         public DbSet<Orders> Orders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
+        public DbSet<Cart> Cart { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=.;Database=Test;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=.;Database=CosmeticAppDBEng;Trusted_Connection=True;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -43,6 +45,19 @@ namespace CosmeticWebApp.DAL
             modelBuilder.Entity<OrderDetails>()
                .HasOne<Product>(sc => sc.Product)
                .WithMany(s => s.OrderDetails)
+               .HasForeignKey(sc => sc.ProductId);
+
+            //Fluent API sử dụng tạo bảng mới many - many giỏ hàng
+            modelBuilder.Entity<Cart>().HasKey(sc => new { sc.Account, sc.ProductId });
+
+            modelBuilder.Entity<Cart>()
+                .HasOne<Personal_Information>(sc => sc.Personal_Information)
+                .WithMany(s => s.Cart)
+                .HasForeignKey(sc => sc.Account);
+
+            modelBuilder.Entity<Cart>()
+               .HasOne<Product>(sc => sc.Product)
+               .WithMany(s => s.Cart)
                .HasForeignKey(sc => sc.ProductId);
 
             //Fluent API sử dụng tạo 2 foreign key từ bảng thông tin cá nhân qua đơn hàng
