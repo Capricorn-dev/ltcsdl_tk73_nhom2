@@ -29,7 +29,7 @@ export class ProductComponent {
     product: any = {
         productId: "",
         name: "",
-        price:"",
+        price: "",
         brandId: "1",
         categoryId: "1",
         createdDate: this.nowDate.toJSON(), //Biến này dùng để post
@@ -51,37 +51,56 @@ export class ProductComponent {
     //Tìm
     checkProductsStatus: boolean = true; //Check gửi giá trị chưa
     searchProducts() {
-        //Kiểm tra trang có tồn tại sau khi đã loading
-        if (this.checkLoading == true && (this.page > this.products.totalPages || this.page < 1)) {
-            alert("Không có trang này !!")
-        }
         //Các value truyền vào phải giống tên với các tham số phía back-end
         //get
-        else {
-            this.http.get<any>('https://localhost:44394/api/Product/searchProduct/'
-                + this.size + ',' + this.page + '?keyWord=' + this.keyWord).subscribe(
-                    result => {
-                        var res: any = result;
-                        //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
-                        //Thu được dữ liệu
-                        if (res != null) {
-                            this.products = res;
-                            if (this.checkProductsStatus == true) {
-                                this.setValuesOfCategorySelect();
-                                this.setValuesOfBrandSelect();
-                                this.checkProductsStatus = false; //Nếu đã gửi thì không gửi nữa
+        this.http.get<any>('https://localhost:44394/api/Product/searchProduct/'
+            + this.size + ',' + this.page + '?keyWord=' + this.keyWord).subscribe(
+                result => {
+                    var res: any = result;
+                    //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
+                    //Thu được dữ liệu
+                    if (res != null) {
+                        // this.products = res;
+                        // if (this.checkProductsStatus == true) {
+                        //     this.setValuesOfCategorySelect();
+                        //     this.setValuesOfBrandSelect();
+                        //     this.checkProductsStatus = false; //Nếu đã gửi thì không gửi nữa
+                        // }
+                        // this.checkLoading = true;
+                        //Kiểm tra trang có tồn tại sau khi đã loading
+                        if (this.checkLoading == true && (this.page > res.totalPages || this.page < 1)) {
+                            //Ưu tiên từ số trang rồi tới số cột
+                            if (res.totalRecords > 0) //Khi có dữ liêu nhưng không nằm ở trang cần tìm 
+                            {
+
+                                alert("Không có trang này !!");
                             }
-                            this.checkLoading = true;
+                            else //Khi từ khóa không tìm ra được dữ liệu
+                            {
+                                this.products = res;
+                            }
+
                         }
-                        //Không thu được dữ liệu
+
                         else {
-                            alert(res.message);
+                            this.products = res;
                         }
-                    },
-                    error => {
-                        alert("Server error!!")
-                    });
-        }
+
+                        if (this.checkProductsStatus == true) {
+                            this.setValuesOfCategorySelect();
+                            this.setValuesOfBrandSelect();
+                            this.checkProductsStatus = false; //Nếu đã gửi thì không gửi nữa
+                        }
+                        this.checkLoading = true;
+                    }
+                    //Không thu được dữ liệu
+                    else {
+                        alert(res.message);
+                    }
+                },
+                error => {
+                    alert("Server error!!")
+                });
 
     }
     //Tạo

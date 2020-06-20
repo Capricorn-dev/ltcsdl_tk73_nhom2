@@ -17,8 +17,8 @@
     <div class="col-1"><input class="form-control" [(ngModel)]="keyWord" /> </div>
     <div class="col-2"><button (click)=" searchProducts()" type="button" class="btn btn-dark">Xác nhận</button></div>
 </div>
-<h1 *ngIf="products.totalRecords == 0 && checkLoading == true"><em>Không có dữ liệu của: {{keyWord}}</em></h1>
-<table *ngIf = "checkLoading == true" class='table table-bordered' aria-labelledby="tableLabel">
+<h1 *ngIf="products.totalRecords == 0 && checkLoading == true"><em>Không có dữ liệu của: "{{keyWord}}"</em></h1>
+<table *ngIf = "checkLoading == true && products.totalRecords > 0" class='table table-bordered' aria-labelledby="tableLabel">
     <thead>
         <tr>
             <th>Mã sản phẩm</th>
@@ -45,7 +45,7 @@
     </tbody>
 </table>
 <!--Phân trang-->
-<ul *ngIf = "checkLoading == true" class="pagination">
+<ul *ngIf = "checkLoading == true && products.totalRecords > 0" class="pagination">
     <li>
         <a type="button" class="btn btn-secondary" href="javascprit:void(0)" (click)="goPrevious()">Previous</a>
     </li>

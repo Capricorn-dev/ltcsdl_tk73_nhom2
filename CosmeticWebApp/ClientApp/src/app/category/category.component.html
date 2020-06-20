@@ -18,7 +18,7 @@
 </div>
 
 <h1 *ngIf="categories.totalRecords == 0 && checkLoading == true"><em>Không có dữ liệu "{{keyWord}}"</em></h1>
-<table class='table table-bordered' aria-labelledby="tableLabel" *ngIf = "checkLoading == true">
+<table class='table table-bordered' aria-labelledby="tableLabel" *ngIf = "checkLoading == true && categories.totalRecords > 0">
   <thead>
     <tr>
       <th>Mã danh mục</th>
@@ -43,7 +43,7 @@
   </tbody>
 </table>
 <!--Phân trang-->
-<ul *ngIf = "checkLoading == true" class="pagination">
+<ul *ngIf = "checkLoading == true && categories.totalRecords > 0" class="pagination">
   <li>
     <a type="button" class="btn btn-secondary" href="javascprit:void(0)" (click)="goPrevious()">Previous</a>
   </li>
