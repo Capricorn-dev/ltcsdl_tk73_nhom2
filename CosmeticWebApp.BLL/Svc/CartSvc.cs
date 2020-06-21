@@ -12,11 +12,11 @@ namespace CosmeticWebApp.BLL.Svc
     public class CartSvc
     {
         //Khởi tạo đối tượng
-        private readonly CastRep _rep;
+        private readonly CartRep _rep;
         //Phương thức khởi tạo
         public CartSvc()
         {
-            _rep = new CastRep();
+            _rep = new CartRep();
         }
         //Tạo
         public object CreateCart(CartReq req)
@@ -48,6 +48,10 @@ namespace CosmeticWebApp.BLL.Svc
         public object DeleteCart(String account, String productId)
         {
             return _rep.Delete(account, productId);
+        }
+        public object DeleteCartList(String account)
+        {
+            return _rep.DeleteRange(account);
         }
     }
 }

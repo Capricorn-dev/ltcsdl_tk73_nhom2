@@ -144,6 +144,24 @@ export class CustomersOrderComponent {
                 alert("Server error!!")
             });
     }
+    deleleCartList()
+    {
+        this.http.delete<any>('https://localhost:44394/api/Cart/deleteCartList/' + this.userLogin).subscribe(
+            result => {
+                var res: any = result;
+                //Thu được dữ liệu
+                if (res != null) {
+                    console.log(res); //Chỉ kiểm tra dưới console log
+                }
+                //Không thu được dữ liệu
+                else {
+                    alert("Lỗi dữ liệu");
+                }
+            },
+            error => {
+                alert("Không thể xóa. Server Error !!")
+            });
+    }
     updateUserInfo() {
         this.user.address = this.address + "," + this.ward + "," + this.district + "," + this.city;
         this.http.put<any>('https://localhost:44394/api/Personal_Information/updatePersonal_Information/'
@@ -189,7 +207,9 @@ export class CustomersOrderComponent {
                     if (res != null) {
                         order = res;
                         this.createOrderDetail(order); //Tạo chi tiết đơn hàng
+                        this.deleleCartList(); //Xóa giỏ hàng hiện tại
                         alert("Chúc mừng bạn đã đặt hàng thành công");
+                        window.location.href = "http://localhost:4200/";
                     }
                     //Không thu được dữ liệu
                     else {

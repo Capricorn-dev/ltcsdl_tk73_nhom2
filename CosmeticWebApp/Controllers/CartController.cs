@@ -50,5 +50,11 @@ namespace CosmeticWebApp.Controllers
             var result = _svc.DeleteCart(account, productId);
             return Ok(result);
         }
+        [HttpDelete("deleteCartList/{account}")]
+        public IActionResult DeleteCartList(String account)
+        {
+            var result = _svc.DeleteCartList(account);
+            return Ok(result);
+        }
     }
 }
