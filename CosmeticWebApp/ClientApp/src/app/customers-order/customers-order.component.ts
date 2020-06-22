@@ -196,7 +196,7 @@ export class CustomersOrderComponent {
             orderStatus: "Chưa duyệt", //Mặc định
             note: this.user.note,
             cusId: this.user.account,
-            empId: "NULL" //Chưa ai duyệt
+            empId: "EMP1"
         }
         
         this.http.post('https://localhost:44394/api/Order/createOrder', order).subscribe(

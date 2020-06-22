@@ -3,56 +3,118 @@ import { HttpClient } from '@angular/common/http';
 declare var $: any;
 
 @Component({
-    selector: 'app-order-data',
-    templateUrl: './order.component.html'
+  selector: 'app-order-data',
+  templateUrl: './order.component.html'
 })
 export class OrderComponent {
-     //Mặc định
-     ///Các biến tìm kiếm
-     //Phân trang
-     size: number = 5;
-     page: number = 1;
-     keyWord: String = "Chưa duyệt" //Mặc định;
-     //Biến response
-     orders: any = {
-        data: [],
-        totalRecords: 0,
-        page: 0,
-        size: this.size,
-        totalPages: 0,
-    }
-    ///
-    ///Select Option Order Status
-    selectOrderStatus: any = [
-        {statusName: "Chưa duyệt"},
-        {statusName: "Đã duyệt"},
-        {statusName: "Đang giao"},
-    ];
-    constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-        this.searchOrder();
-    }
-    //Search
-    searchOrder()
-    {
+  //Mặc định
+  ///Các biến tìm kiếm
+  //Phân trang
+  size: number = 5;
+  page: number = 1;
+  keyWord: String = "Chưa duyệt" //Mặc định;
+  //Biến response
+  orders: any = {
+    data: [],
+    totalRecords: 0,
+    page: 0,
+    size: this.size,
+    totalPages: 0,
+  }
+  order: any = {
+    orderId: 0,
+    name: "",
+    createdDate: "",
+    phoneNumbOfOrder: "",
+    address: "",
+    ward: "",
+    district: "",
+    city: "",
+    orderStatus: "",
+    note: "",
+    cusId: "",
+    empId: ""
+  }
+  ///
+  ///Select Option Order Status
+  selectOrderStatus: any = [
+    { statusName: "Chưa duyệt" },
+    { statusName: "Đã duyệt" },
+    { statusName: "Đang giao" },
+    { statusName: "Đã hủy" }
+  ];
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    this.searchOrder();
+  }
+  //Search
+  searchOrder() {
     this.http.get<any>('https://localhost:44394/api/Order/searchOrder/'
-            + this.size + ',' + this.page + '?keyWord=' + this.keyWord).subscribe(
-                result => {
-                    var res: any = result;
-                    //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
-                    //Thu được dữ liệu
-                    if (res != null) {
-                        this.orders = res;
-                    }
-                    //Không thu được dữ liệu
-                    else {
-                        alert(res.message);
-                    }
-                },
-                error => {
-                    alert("Server error!!")
-                });
+      + this.size + ',' + this.page + '?keyWord=' + this.keyWord).subscribe(
+        result => {
+          var res: any = result;
+          //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
+          //Thu được dữ liệu
+          if (res != null) {
+            this.orders = res;
+          }
+          //Không thu được dữ liệu
+          else {
+            alert(res.message);
+          }
+        },
+        error => {
+          alert("Server error!!")
+        });
+  }
+
+  //Update
+  updateOrder(index, status) {
+    this.order = this.orders.data[index];
+    this.order.orderStatus = status;
+    if (status == "Đã duyệt") //Duyệt đơn
+    {
+      this.http.put<any>('https://localhost:44394/api/Order/updateOrderPut/' + this.order.orderId, this.order).subscribe(
+        result => {
+          var res: any = result;
+          //Thu được dữ liệu
+          if (res != null) {
+            alert(status + " thành công đơn hàng.");
+            this.searchOrder(); //Quay về trang đầu
+          }
+          //Không thu được dữ liệu
+          else {
+            alert("Lỗi dữ liệu");
+          }
+        },
+        error => {
+          alert("Server error!!")
+        });
     }
-    //Các hàm liên quan đến phân trang
+    else //Hủy đơn
+    {
+      var check = confirm("Bạn có chắc chắn muốn hủy đơn hàng này ?"); //Tạo thông báo xác nhận xóa
+      if (check == true) {
+        this.http.put<any>('https://localhost:44394/api/Order/updateOrderPut/' + this.order.orderId, this.order).subscribe(
+          result => {
+            var res: any = result;
+            //Thu được dữ liệu
+            if (res != null) {
+              alert(status + " thành công đơn hàng.");
+              this.searchOrder(); //Quay về trang đầu
+            }
+            //Không thu được dữ liệu
+            else {
+              alert("Lỗi dữ liệu");
+            }
+          },
+          error => {
+            alert("Server error!!")
+          });
+      }
+    }
+
+  }
+  //Các hàm liên quan đến phân trang
   goNext() {
     if (this.orders.page < this.orders.totalPages) {
       this.page = this.page + 1;
@@ -71,5 +133,10 @@ export class OrderComponent {
       alert("Bạn đang ở trang đầu !!!")
     }
   }
-    //Options Handle
+  //Modal
+  openSpecificInformationModal(index) {
+    this.order = this.orders.data[index];
+    $('#specificInformationModal').modal('show');
+}
+  //Options Handle
 }

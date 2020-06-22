@@ -16,8 +16,8 @@ export class NavMenuComponent {
   //Kiểm tra xem Login có đúng hay ko 
 
   data: any = {
-    account: "123456789",
-    password: "123456789"
+    account: "",
+    password: ""
   }
   collapse() {
     this.isExpanded = false;
@@ -36,6 +36,20 @@ export class NavMenuComponent {
     document.getElementById("main").style.marginLeft= "0";
   }
   openLoginModal() {
+    this.data = {
+      account: "123456789",
+      password: "123456789"
+    }
+    this.user = {
+      data: {
+        resultAccount: Boolean,
+        resultPassword: Boolean,
+        account: "",
+        phoneNumber: "",
+        email: "",
+      },
+      success: Boolean
+    }
     $('#LoginModal').modal('show');
   }
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string,private router:Router)
@@ -64,7 +78,7 @@ export class NavMenuComponent {
           //Thu được dữ liệu
           if (res != null) {
               this.user = res;
-              if(this.user.data.resultAccount==true || this.user.data.resultPassword==true)
+              if(this.user.data.resultAccount==true && this.user.data.resultPassword==true)
               {
                 //Chỉ hiện thị giỏ hàng khi đã đăng nhập
                 document.getElementById("btnShopingCast").style.visibility = "visible";

@@ -37,6 +37,7 @@ background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
 .card:hover {
 border: 3px solid red;
 transition: 0.3s;
+cursor: pointer;
 }
 #btnAddToCart{
   border-radius: 10px;
