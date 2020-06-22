@@ -29,8 +29,8 @@ namespace CosmeticWebApp.DAL
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Chỉnh đường dẫn CSDL ở đây
-            optionsBuilder.UseSqlServer(@"Server=.;Database=CosmeticAppDBEng;Trusted_Connection=True;"); //Windows Authencation
-            //optionsBuilder.UseSqlServer(@"Data Source =.\SQLEXPRESS; Initial Catalog = CosmeticAppDBEng; Persist Security Info = True; User ID = sa; Password = sa;
+            optionsBuilder.UseSqlServer(@"Server=.;Database=CosmeticAppDB;Trusted_Connection=True;"); //Windows Authencation
+            //optionsBuilder.UseSqlServer(@"Data Source =.\SQLEXPRESS; Initial Catalog = CosmeticAppDB; Persist Security Info = True; User ID = sa; Password = sa;
             //Pooling = False; MultipleActiveResultSets = False; Encrypt = False; TrustServerCertificate = True"; //SQL Server Authencation
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
