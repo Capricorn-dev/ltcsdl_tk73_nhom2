@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using CosmeticWebApp.BLL.Svc;
 using CosmeticWebApp.Common.Req;
+using CosmeticWebApp.DAL.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace CosmeticWebApp.Controllers
 {
@@ -19,6 +21,14 @@ namespace CosmeticWebApp.Controllers
         public ProductController()
         {
             _svc = new ProductSvc();
+        }
+        [HttpPost("sendingAccountTypeSession")]
+        //Chạy ngay khi load web
+        public IActionResult Index()
+        {
+            var accountType = new AccountType { AccountTypeID = "TEST", Name = "TEST", Note = "TEST" };
+            HttpContext.Session.SetString("SessionAccountType", JsonConvert.SerializeObject(accountType)); //Chuyển thành file JSON
+            return Ok(accountType);
         }
         [HttpPost("createProduct")]
         public IActionResult CreateProduct(ProductReq req)

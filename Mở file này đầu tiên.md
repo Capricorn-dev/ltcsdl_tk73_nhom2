@@ -15,3 +15,4 @@ Bước 5: Mở file TaoCSDL.sql ở project trong SQL Server 2014, chọn đún
 --Visual Code
 Bước 1: Chọn đường dẫn ..\LTCSDL\CosmeticWebApp, sau đó select folder ClientApp
 Bước 2: Terminal -> New terminal. Gõ vào ng s -o để khởi động localhost:4200
+--Lưu ý: Khi chạy project nhớ set default project CosmeticWebApp 

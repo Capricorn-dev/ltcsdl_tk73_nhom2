@@ -72,11 +72,20 @@ namespace CosmeticWebApp
                 c.SwaggerDoc("v2", inf2);
             });
             #endregion
+
+            //Add session
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(3600); //Timeout
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //Use sesion created above
+            app.UseSession();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -97,7 +106,11 @@ namespace CosmeticWebApp
             });
             #endregion
 
+            //app.UseCors(p => p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseCors(p => p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            //app.UseCors(config =>
+            //    config.AllowAnyOrigin()
+            //          .AllowCredentials());
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

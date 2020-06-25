@@ -6,6 +6,7 @@ using CosmeticWebApp.BLL.Svc;
 using CosmeticWebApp.Common.Req;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace CosmeticWebApp.Controllers
 {
@@ -20,6 +21,46 @@ namespace CosmeticWebApp.Controllers
         {
             _svc = new Personal_InformationSvc();
         }
+        //Cookie
+        //Create
+        [HttpPost("createAccountCookie")]
+        public IActionResult CreateLoginCookie(AccountReq req)
+        {
+            String error = "";
+            Boolean success = false;
+            string key = "MyAccount"; //Đây là key cookie dùng để truy xuất
+            var value = new
+            {
+                account = req.Account,
+                password = req.Password
+            }; //Đây là giá trị của key
+            try
+            {
+                CookieOptions cookieOptions = new CookieOptions(); //Khởi tạo cookie options
+                cookieOptions.Expires = DateTime.Now.AddDays(7); //Hạn sử dụng trong 7 ngày
+                Response.Cookies.Append(key, JsonConvert.SerializeObject(value).ToString(), cookieOptions); //Khởi tạo cookie
+                success = true;
+            }
+            catch(Exception ex)
+            {
+                error = ex.StackTrace; //Xuất lỗi
+            }
+            var Result = new
+            {
+                Success = success,
+                Error = error
+            };
+            return Ok(Result);
+        }
+        //Reading
+        [HttpGet("getAccountCookie")]
+        public IActionResult ReadAccTypeCookie()
+        {
+            string key = "MyAccount"; //Đây là key cookie dùng để truy xuất
+            var AccTypeCookie = JsonConvert.SerializeObject(Request.Cookies[key]); //Trả về file JSON
+            return Ok(AccTypeCookie);
+        }
+        //Session
         //Tạo
         [HttpPost("createPersonal_Information")]
         public IActionResult CreatePersonal_Information(Personal_InformationReq req)

@@ -36,10 +36,6 @@ export class NavMenuComponent {
     document.getElementById("main").style.marginLeft= "0";
   }
   openLoginModal() {
-    this.data = {
-      account: "123456789",
-      password: "123456789"
-    }
     this.user = {
       data: {
         resultAccount: Boolean,
@@ -54,7 +50,7 @@ export class NavMenuComponent {
   }
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string,private router:Router)
   {
-    //this.checkLogin();
+    this.getAccoutInCookie();
   }
   //Handle Login
   user : any = {
@@ -66,6 +62,60 @@ export class NavMenuComponent {
       email: "",
     },
     success: Boolean
+  }
+  getAccoutInCookie()
+  {
+    //get
+    this.http.get<any>('https://localhost:44394/api/Personal_Information/getAccountCookie')
+    .subscribe(
+      result => {
+          var res: any = result;
+          //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
+          //Thu được dữ liệu
+          if (res != null) {
+              //Parse JSON
+              res = JSON.parse(res);
+              console.log(res);
+             //Đã tạo tạo cookie
+              this.data.account = res.account;
+              this.data.password = res.password;
+              console.log(this.data.account);
+          }
+          //Chưa hề tạo cookie
+          else {
+              console.log("You don't have a cookie login.")
+          }
+          
+      },
+      error => {
+          alert("Get Cookie API Error !!")
+      });
+  }
+  createCookie(Account: String, Password: String)
+  {
+    //Covert to JSON
+    var post = {
+      account: Account,
+      password: Password
+    }
+    //post
+    this.http.post('https://localhost:44394/api/Personal_Information/createAccountCookie', post)
+    .subscribe(
+      result => {
+          var res: any = result;
+          //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
+          //Thu được dữ liệu
+          if (res.success) {
+              console.log("Create Cookie Login Success !!")
+          }
+          //Không thu được dữ liệu
+          else {
+              console.log(res.error)
+          }
+      },
+      error => {
+          alert("Create Cookie Server Error !!")
+      });
   }
   checkLogin()
   {
@@ -83,9 +133,17 @@ export class NavMenuComponent {
                 //Chỉ hiện thị giỏ hàng khi đã đăng nhập
                 document.getElementById("btnShopingCast").style.visibility = "visible";
                 document.getElementById("btnlogin").style.display = "none";
+                //Nếu check nhớ mật khẩu thì mới tạo cookie
+                if((document.getElementById("rememberLoginCheckBox") as HTMLInputElement).checked)
+                {
+                  //Tạo cookie
+                  this.createCookie(this.data.account, this.data.password);
+                }
+                console.log((document.getElementById("rememberLoginCheckBox") as HTMLInputElement).checked)
                 //Set text khi đăng nhập
                 this.userLogin = this.user.data.account;
                 this.toggleLoginModal();
+               
               }
           }
           //Không thu được dữ liệu
