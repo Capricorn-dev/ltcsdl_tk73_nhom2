@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Variable } from '@angular/compiler/src/render3/r3_ast';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 declare var $: any;
 
 @Component({
@@ -37,17 +36,28 @@ export class BrandComponent {
         startedDate: this.nowDate.toJSON(), //Biến này dùng để post
         note: ""
     };
+
+    tokenSession: String = "";
     constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
         this.searchBrands();
+        this.getTokenSession();
     }
+
     //Các hàm liên qua đến category
     //Tìm
     searchBrands() {
-
+        //Tooken
+        var bearerTooken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkiLCJlbWFpbCI6ImxpbWl0Mzg5QGdtYWlsLmNvbSIsImp0aSI6IjMzNTJkMWNmLWI5YjYtNDhmYi05ZmUyLTE0MTMwOTVkZDk4OCIsImV4cCI6MTU5MzA5MTc4MCwiaXNzIjoiS2Vpc291ciIsImF1ZCI6IktlaXNvdXIifQ.QUfrynUNQM0XQibSQaBNVF-km1JGisPaIGmsJWeMze0";
+        //Chuyển sang header
+        var headers_object = new HttpHeaders().set("Authorization", "Bearer " + bearerTooken);
+        //Chọn option
+        const httpOptions = {
+            headers: headers_object
+        };
         //Các value truyền vào phải giống tên với các tham số phía back-end
         //get
         this.http.get<any>('https://localhost:44394/api/Brand/searchBrand/' +
-            this.size + ',' + this.page + '?keyWord=' + this.keyWord).subscribe(
+            this.size + ',' + this.page + '?keyWord=' + this.keyWord, httpOptions).subscribe(
                 result => {
                     var res: any = result;
                     //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
@@ -79,13 +89,28 @@ export class BrandComponent {
                     }
                 },
                 error => {
-                    alert("Server error!!")
+                    var err: any = error
+                    if (err.status == "401") //Chưa xác thực
+                    {
+                        alert("Bạn vui lòng xác thực tài khoản.");
+                    }
+                    else {
+                        alert("Server error!!")
+                    }
                 });
     }
     //Tạo
     createBrand() {
+        //Tooken
+        var bearerTooken = this.tokenSession;
+        //Chuyển sang header
+        var headers_object = new HttpHeaders().set("Authorization", "Bearer " + bearerTooken);
+        //Chọn option
+        const httpOptions = {
+            headers: headers_object
+        };
         //post
-        this.http.post('https://localhost:44394/api/Brand/createBrand', this.brand).subscribe(
+        this.http.post('https://localhost:44394/api/Brand/createBrand', this.brand, httpOptions).subscribe(
             result => {
                 var res: any = result;
                 //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
@@ -102,14 +127,28 @@ export class BrandComponent {
                 }
             },
             error => {
-                alert("Server error!!")
+                var err: any = error;
+                if (err.status == "401") {
+                    alert("Bạn vui lòng xác thực tài khoản.");
+                }
+                else {
+                    alert("Server error!!");
+                }
             });
     }
     //Sửa
     updateBrand() {
+        //Tooken
+        var bearerTooken = this.tokenSession;
+        //Chuyển sang header
+        var headers_object = new HttpHeaders().set("Authorization", "Bearer " + bearerTooken);
+        //Chọn option
+        const httpOptions = {
+            headers: headers_object
+        };
         //put
         this.http.put('https://localhost:44394/api/Brand/updateBrandPut/'
-            + this.brand.brandId, this.brand).subscribe(
+            + this.brand.brandId, this.brand, httpOptions).subscribe(
                 result => {
                     var res: any = result;
                     //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
@@ -125,17 +164,31 @@ export class BrandComponent {
                     }
                 },
                 error => {
-                    alert("Server error!!")
+                    var err: any = error;
+                    if (err.status == "401") {
+                        alert("Bạn vui lòng xác thực tài khoản.");
+                    }
+                    else {
+                        alert("Server error!!");
+                    }
                 });
     }
     id: String = "";
     //Xóa
-    deleteCategory(brandId) {
+    deleteBrand(brandId) {
+        //Tooken
+        var bearerTooken = this.tokenSession;
+        //Chuyển sang header
+        var headers_object = new HttpHeaders().set("Authorization", "Bearer " + bearerTooken);
+        //Chọn option
+        const httpOptions = {
+            headers: headers_object
+        };
         this.id = brandId;
         var check = confirm("Bạn có chắc chắn xóa danh mục này ?"); //Tạo thông báo xác nhận xóa
         if (check == true) {
-            //post
-            this.http.delete('https://localhost:44394/api/Brand/deleteBrand' + this.id).subscribe(
+            //delete
+            this.http.delete('https://localhost:44394/api/Brand/deleteBrand/' + this.id, httpOptions).subscribe(
                 result => {
                     var res: any = result;
                     //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
@@ -151,9 +204,38 @@ export class BrandComponent {
                     }
                 },
                 error => {
-                    alert("Server error!!")
+                    var err: any = error;
+                    if (err.status == "401") {
+                        alert("Bạn vui lòng xác thực tài khoản.");
+                    }
+                    else {
+                        alert("Server error!!");
+                    }
                 });
         }
+    }
+    getTokenSession() {
+        //get
+        this.http.get<any>('https://localhost:44394/api/Personal_Information/getTokenSession')
+            .subscribe(
+                result => {
+                    var res: String = result;
+                    //Thu được dữ liệu
+                    if (res != null) {
+                        this.tokenSession = res
+                        console.log(this.tokenSession)
+                    }
+                    //Chưa hề tạo cookie
+                    else {
+                        console.log("You don't have a token cookie")
+                    }
+
+                },
+                error => {
+                    var err: any = error;
+                    console.log(err);
+                    alert("Get Cookie API Error !!");
+                });
     }
     //Xem cụ thế
     specificInformation(index) {

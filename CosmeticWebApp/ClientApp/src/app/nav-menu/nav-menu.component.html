@@ -91,17 +91,17 @@
   <div class="flex-sm-row-reverse">
     <form class="form-inline">
       <button id="btnShopingCast" type="button" class="btn btn-outline-light my-2 my-sm-0" [routerLink]="['/shoppingcart']">
-        <i class="fas fa-shopping-cart"></i> Giỏ hàng
+        <i class="fas fa-shopping-cart" *ngIf="isLogin"></i> Giỏ hàng
       </button>
       <button id="btnlogin" type="button" class="btn btn-outline-light my-2 my-sm-0" (click)="openLoginModal()" >
-        <i class="fas fa-sign-in-alt"></i> Đăng nhập
+        <i class="fas fa-sign-in-alt" *ngIf="!isLogin"></i> Đăng nhập
       </button>
 
-      <button id="btnUserName" type="button" class="btn btn-outline-light my-2 my-sm-0" *ngIf="user.data.resultAccount==true && user.data.resultPassword==true" [routerLink]="['/profile']">
+      <button id="btnUserName" type="button" class="btn btn-outline-light my-2 my-sm-0" *ngIf="isLogin" [routerLink]="['/profile']">
         <i class="fas fa-user">{{userLogin}}</i>
       </button>
 
-      <button id="btnLogout" type="button" class="btn btn-outline-light my-2 my-sm-0" *ngIf="user.data.resultAccount==true && user.data.resultPassword==true" onClick="window.location.href=window.location.href">
+      <button (click)="deleteAccountSession()" id="btnLogout" type="button" class="btn btn-outline-light my-2 my-sm-0" *ngIf="isLogin" onClick="window.location.href=window.location.href">
         <i class="	fas fa-sign-out-alt"></i> Đăng xuất
       </button>
     </form>

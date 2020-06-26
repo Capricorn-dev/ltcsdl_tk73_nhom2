@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 declare var $: any;
 
 @Component({
@@ -43,8 +43,11 @@ export class OrderComponent {
     { statusName: "Đang giao" },
     { statusName: "Đã hủy" }
   ];
+
+  tokenSession: String = "";
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.searchOrder();
+    this.getTokenSession();
   }
   //Search
   searchOrder() {
@@ -69,11 +72,19 @@ export class OrderComponent {
 
   //Update
   updateOrder(index, status) {
+     //Tooken
+     var bearerTooken = this.tokenSession;
+     //Chuyển sang header
+     var headers_object = new HttpHeaders().set("Authorization", "Bearer " + bearerTooken);
+     //Chọn option
+     const httpOptions = {
+         headers: headers_object
+     };
     this.order = this.orders.data[index];
     this.order.orderStatus = status;
     if (status == "Đã duyệt") //Duyệt đơn
     {
-      this.http.put<any>('https://localhost:44394/api/Order/updateOrderPut/' + this.order.orderId, this.order).subscribe(
+      this.http.put<any>('https://localhost:44394/api/Order/updateOrderPut/' + this.order.orderId, this.order, httpOptions).subscribe(
         result => {
           var res: any = result;
           //Thu được dữ liệu
@@ -87,14 +98,20 @@ export class OrderComponent {
           }
         },
         error => {
-          alert("Server error!!")
+          var err: any = error;
+          if (err.status == "401") {
+              alert("Bạn vui lòng xác thực tài khoản.");
+          }
+          else {
+              alert("Server error!!");
+          }
         });
     }
     else //Hủy đơn
     {
       var check = confirm("Bạn có chắc chắn muốn hủy đơn hàng này ?"); //Tạo thông báo xác nhận xóa
       if (check == true) {
-        this.http.put<any>('https://localhost:44394/api/Order/updateOrderPut/' + this.order.orderId, this.order).subscribe(
+        this.http.put<any>('https://localhost:44394/api/Order/updateOrderPut/' + this.order.orderId, this.order, httpOptions).subscribe(
           result => {
             var res: any = result;
             //Thu được dữ liệu
@@ -108,12 +125,41 @@ export class OrderComponent {
             }
           },
           error => {
-            alert("Server error!!")
+            var err: any = error;
+            if (err.status == "401") {
+                alert("Bạn vui lòng xác thực tài khoản.");
+            }
+            else {
+                alert("Server error!!");
+            }
           });
       }
     }
 
   }
+  getTokenSession() {
+    //get
+    this.http.get<any>('https://localhost:44394/api/Personal_Information/getTokenSession')
+        .subscribe(
+            result => {
+                var res: String = result;
+                //Thu được dữ liệu
+                if (res != null) {
+                    this.tokenSession = res
+                    console.log(this.tokenSession)
+                }
+                //Chưa hề tạo cookie
+                else {
+                    console.log("You don't have a token cookie")
+                }
+
+            },
+            error => {
+                var err: any = error;
+                console.log(err);
+                alert("Get Cookie API Error !!");
+            });
+}
   //Các hàm liên quan đến phân trang
   goNext() {
     if (this.orders.page < this.orders.totalPages) {

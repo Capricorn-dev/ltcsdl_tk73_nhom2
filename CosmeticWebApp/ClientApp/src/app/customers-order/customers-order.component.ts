@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
 declare var $: any;
@@ -62,6 +62,7 @@ export class CustomersOrderComponent {
     total: number = 0;
     cartItemAmount: number[]= [];
     
+    tokenSession: String = "";
     setPrice()
     {
         //Subtotal
@@ -77,12 +78,12 @@ export class CustomersOrderComponent {
         //Total
         this.total = this.subtotal + this.VATtax;
     }
-    test: String;
     constructor(private http?: HttpClient, @Inject('BASE_URL') baseUrl?: string,
         private router?: Router, private route?: ActivatedRoute) {
             //console.log("Hello world!");
             this.getUserByAccount();
             this.getCartByAccount();
+            this.getTokenSession();
             //var test = (document.getElementById("cartItemAmount0")) as HTMLInputElement;
            
             // var test =  document.getElementById("test");
@@ -182,6 +183,29 @@ export class CustomersOrderComponent {
                     alert("Server error!!")
                 });
     }
+    getTokenSession() {
+        //get
+        this.http.get<any>('https://localhost:44394/api/Personal_Information/getTokenSession')
+            .subscribe(
+                result => {
+                    var res: String = result;
+                    //Thu được dữ liệu
+                    if (res != null) {
+                        this.tokenSession = res
+                        console.log(this.tokenSession)
+                    }
+                    //Chưa hề tạo cookie
+                    else {
+                        console.log("You don't have a token cookie")
+                    }
+
+                },
+                error => {
+                    var err: any = error;
+                    console.log(err);
+                    alert("Get Cookie API Error !!");
+                });
+    }
     customerOrder()
     {
         var order: any = {
@@ -198,8 +222,15 @@ export class CustomersOrderComponent {
             cusId: this.user.account,
             empId: "EMP1"
         }
-        
-        this.http.post('https://localhost:44394/api/Order/createOrder', order).subscribe(
+         //Tooken
+         var bearerTooken = this.tokenSession;
+         //Chuyển sang header
+         var headers_object = new HttpHeaders().set("Authorization", "Bearer " + bearerTooken);
+         //Chọn option
+         const httpOptions = {
+             headers: headers_object
+         };
+        this.http.post('https://localhost:44394/api/Order/createOrder', order, httpOptions).subscribe(
                 result => {
                     var res: any = result;
                     //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
@@ -217,7 +248,13 @@ export class CustomersOrderComponent {
                     }
                 },
                 error => {
-                    alert("Server error!!")
+                    var err: any = error;
+                    if (err.status == "401") {
+                        alert("Bạn vui lòng xác thực tài khoản.");
+                    }
+                    else {
+                        alert("Server error!!");
+                    }
                 });
     }
     createOrderDetail(order: any)

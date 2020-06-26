@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 
 declare var $: any;
@@ -37,8 +37,11 @@ export class CategoryComponent {
     note: ""
   };
 
+  tokenSession: String = "";
   public constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.searchCategories();
+    this.getTokenSession();
+
   }
 
   //Các hàm liên qua đến category
@@ -97,20 +100,19 @@ export class CategoryComponent {
             //Kiểm tra trang có tồn tại sau khi đã loading
             if (this.checkLoading == true && (this.page > res.totalPages || this.page < 1)) {
               //Ưu tiên từ số trang rồi tới số cột
-              if(res.totalRecords > 0) //Khi có dữ liêu nhưng không nằm ở trang cần tìm 
+              if (res.totalRecords > 0) //Khi có dữ liêu nhưng không nằm ở trang cần tìm 
               {
-                
+
                 alert("Không có trang này !!");
               }
               else //Khi từ khóa không tìm ra được dữ liệu
-              { 
+              {
                 this.categories = res;
               }
-             
+
             }
-           
-            else
-            {
+
+            else {
               this.categories = res;
             }
             this.checkLoading = true;
@@ -139,8 +141,17 @@ export class CategoryComponent {
   }
   //Tạo
   createCategory() {
+
+    //Tooken
+    var bearerTooken = this.tokenSession;
+    //Chuyển sang header
+    var headers_object = new HttpHeaders().set("Authorization", "Bearer " + bearerTooken);
+    //Chọn option
+    const httpOptions = {
+      headers: headers_object
+    };
     //post
-    this.http.post('https://localhost:44394/api/Category/createCategory', this.category).subscribe(
+    this.http.post('https://localhost:44394/api/Category/createCategory', this.category, httpOptions).subscribe(
       result => {
         var res: any = result;
         //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
@@ -157,13 +168,29 @@ export class CategoryComponent {
         }
       },
       error => {
-        alert("Server error!!")
+        var err: any = error;
+        if(err.status == "401")
+        {
+          alert("Bạn vui lòng xác thực tài khoản.");
+        }
+        else
+        {
+          alert("Server error!!");
+        }
       });
   }
   //Sửa
   updateCategory() {
+       //Tooken
+       var bearerTooken = this.tokenSession;
+       //Chuyển sang header
+       var headers_object = new HttpHeaders().set("Authorization", "Bearer " + bearerTooken);
+       //Chọn option
+       const httpOptions = {
+         headers: headers_object
+       };
     //put
-    this.http.put('https://localhost:44394/api/Category/updateCategoryPut/' + this.category.categoryId, this.category).subscribe(
+    this.http.put('https://localhost:44394/api/Category/updateCategoryPut/' + this.category.categoryId, this.category, httpOptions).subscribe(
       result => {
         var res: any = result;
         //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
@@ -179,17 +206,34 @@ export class CategoryComponent {
         }
       },
       error => {
-        alert("Server error!!")
+        var err: any = error;
+        if(err.status == "401")
+        {
+          alert("Bạn vui lòng xác thực tài khoản.");
+        }
+        else
+        {
+          alert("Server error!!");
+        }
       });
   }
   id: String = "";
   //Xóa
   deleteCategory(categoryId) {
+      //Tooken
+      var bearerTooken = this.tokenSession;
+      //Chuyển sang header
+      var headers_object = new HttpHeaders().set("Authorization", "Bearer " + bearerTooken);
+      //Chọn option
+      const httpOptions = {
+        headers: headers_object
+      };
+
     this.id = categoryId;
     var check = confirm("Bạn có chắc chắn xóa danh mục này ?"); //Tạo thông báo xác nhận xóa
     if (check == true) {
       //delete
-      this.http.delete('https://localhost:44394/api/Category/deleteCategory/' + this.id).subscribe(
+      this.http.delete('https://localhost:44394/api/Category/deleteCategory/' + this.id, httpOptions).subscribe(
         result => {
           var res: any = result;
           //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
@@ -205,9 +249,40 @@ export class CategoryComponent {
           }
         },
         error => {
-          alert("Server error!!")
+          var err: any = error;
+          if(err.status == "401")
+          {
+            alert("Bạn vui lòng xác thực tài khoản.");
+          }
+          else
+          {
+            alert("Server error!!");
+          }
         });
     }
+  }
+  getTokenSession() {
+    //get
+    this.http.get<any>('https://localhost:44394/api/Personal_Information/getTokenSession')
+      .subscribe(
+        result => {
+          var res: String = result;
+          //Thu được dữ liệu
+          if (res != null) {
+            this.tokenSession = res;;
+              console.log(this.tokenSession)
+          }
+          //Chưa hề tạo cookie
+          else {
+            console.log("You don't have a token cookie")
+          }
+
+        },
+        error => {
+          var err: any = error;
+          console.log(err);
+          alert("Get Cookie API Error !!");
+        });
   }
   //Xem cụ thế
   specificInformation(index) {

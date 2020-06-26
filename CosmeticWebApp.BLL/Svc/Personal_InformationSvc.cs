@@ -47,9 +47,20 @@ namespace CosmeticWebApp.BLL.Svc
         {
             return _rep.CheckLogin(req);
         }
+        public Personal_Information AuthenticateUser(AccountReq req)
+        {
+            var res = _rep.AuthenticateUser(req);
+            return res;
+        }
         public object GetCustomerByAccount(String account)
         {
             return _rep.GetCustomerByAccount(account);
+        }
+
+        //ADO
+        public object LoginByADO(AccountReq req)
+        {
+            return _rep.LoginByADO(req);
         }
     }
 }

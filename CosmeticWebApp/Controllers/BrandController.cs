@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CosmeticWebApp.BLL.Svc;
 using CosmeticWebApp.Common.Req;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,7 @@ namespace CosmeticWebApp.Controllers
         {
             _svc = new BrandSvc();
         }
+        [Authorize]
         [HttpPost("createBrand")]
         public IActionResult CreateBrand(BrandReq req)
         {
@@ -32,18 +34,21 @@ namespace CosmeticWebApp.Controllers
             var result = _svc.SearchBrand(size, page, keyWord);
             return Ok(result);
         }
+        [Authorize]
         [HttpPut("updateBrandPut/{id}")]
         public IActionResult UpdateBrandPut(String id, BrandReq req)
         {
             var result = _svc.UpdateBrand(id, req);
             return Ok(result);
         }
+        [Authorize]
         [HttpPatch("updateBrandPatch/{id}")]
         public IActionResult UpdateBrandPatch(String id, BrandReq req)
         {
             var result = _svc.UpdateBrand(id, req);
             return Ok(result);
         }
+        [Authorize]
         [HttpDelete("deleteBrand/{id}")]
         public IActionResult DeleteBrand(String id)
         {

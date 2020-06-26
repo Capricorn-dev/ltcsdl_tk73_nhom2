@@ -1,5 +1,5 @@
-import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, Inject, AfterViewInit, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
 
@@ -10,7 +10,19 @@ declare var $: any;
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.css']
 })
-export class NavMenuComponent {
+export class NavMenuComponent{
+  // ngOnInit()
+  // {
+  //   try{
+  //     this.getAccountSession();
+  //   }
+  //   catch
+  //   {
+  //     console.log("Error Token Cookie")
+  //   }
+  // }
+  tokenCookie: String = "";
+  isLogin: Boolean;
   userLogin: String = "Người dùng"; //Mặc định
   isExpanded = false;
   //Kiểm tra xem Login có đúng hay ko 
@@ -26,34 +38,51 @@ export class NavMenuComponent {
   toggle() {
     this.isExpanded = !this.isExpanded;
   }
-    openNav() {
+  openNav() {
     document.getElementById("mySidenav").style.width = "195px";
     document.getElementById("main").style.marginLeft = "195px";
   }
-  
+
   closeNav() {
     document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft= "0";
+    document.getElementById("main").style.marginLeft = "0";
   }
   openLoginModal() {
-    this.user = {
-      data: {
-        resultAccount: Boolean,
-        resultPassword: Boolean,
-        account: "",
-        phoneNumber: "",
-        email: "",
-      },
-      success: Boolean
+    // this.user = {
+    //   data: {
+    //     resultAccount: Boolean,
+    //     resultPassword: Boolean,
+    //     account: "",
+    //     phoneNumber: "",
+    //     email: "",
+    //   },
+    //   success: Boolean
+    // }
+    try
+    {
+      this.getTokenCookie();
+      
     }
+    catch
+    {
+
+    }
+    console.log(this.tokenCookie);
     $('#LoginModal').modal('show');
   }
-  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string,private router:Router)
-  {
-    this.getAccoutInCookie();
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, private router: Router) {
+    try{
+      this.getAccountSession();
+    }
+    catch
+    {
+      console.log("Error Account Session")
+    }
+    console.log(this.isLogin);
+    
   }
   //Handle Login
-  user : any = {
+  user: any = {
     data: {
       resultAccount: Boolean,
       resultPassword: Boolean,
@@ -63,36 +92,64 @@ export class NavMenuComponent {
     },
     success: Boolean
   }
-  getAccoutInCookie()
-  {
-    //get
-    this.http.get<any>('https://localhost:44394/api/Personal_Information/getAccountCookie')
-    .subscribe(
-      result => {
+  //Cookie
+  removeTokenCookie() {
+    //post
+    this.http.post('https://localhost:44394/api/Personal_Information/removeTokenCookie', true)
+      .subscribe(
+        result => {
           var res: any = result;
           //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
           //Thu được dữ liệu
           if (res != null) {
-              //Parse JSON
-              res = JSON.parse(res);
-              console.log(res);
-             //Đã tạo tạo cookie
-              this.data.account = res.account;
-              this.data.password = res.password;
-              console.log(this.data.account);
+            console.log(res);
           }
           //Chưa hề tạo cookie
           else {
-              console.log("You don't have a cookie login.")
+            console.log("You don't have a cookie login.");
           }
-          
-      },
-      error => {
-          alert("Get Cookie API Error !!")
-      });
+
+        },
+        error => {
+          //alert("Get Cookie API Error !!");
+        });
   }
-  createCookie(Account: String, Password: String)
-  {
+  getTokenCookie() {
+    //get
+    this.http.get<any>('https://localhost:44394/api/Personal_Information/getTokenCookie')
+      .subscribe(
+        result => {
+          var res: String = result;
+          //Thu được dữ liệu
+          if (res != null) {
+            this.tokenCookie = res;
+            console.log(this.tokenCookie);
+            //Sau khi có token thì get account
+            try
+            {
+              this.getAccountByTooken(this.tokenCookie);
+              console.log("Got token");
+            }
+            catch
+            {
+              this.data.account = "";
+              this.data.password = "";
+              console.log("No token");
+            }
+          }
+          //Chưa hề tạo cookie
+          else {
+            console.log("You don't have a token cookie")
+          }
+
+        },
+        error => {
+          var err: any = error;
+          console.log(err);
+          alert("Get Cookie API Error !!");
+        });
+  }
+  createCookie(Account: String, Password: String) {
     //Covert to JSON
     var post = {
       account: Account,
@@ -100,66 +157,140 @@ export class NavMenuComponent {
     }
     //post
     this.http.post('https://localhost:44394/api/Personal_Information/createAccountCookie', post)
-    .subscribe(
-      result => {
+      .subscribe(
+        result => {
           var res: any = result;
           //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
           //Thu được dữ liệu
           if (res.success) {
-              console.log("Create Cookie Login Success !!")
+            console.log("Create Cookie Login Success !!")
           }
           //Không thu được dữ liệu
           else {
-              console.log(res.error)
+            console.log(res.error)
           }
-      },
-      error => {
+        },
+        error => {
           alert("Create Cookie Server Error !!")
-      });
+        });
   }
-  checkLogin()
-  {
+  //Session
+  getAccountSession() {
+    //get
+    this.http.get<any>('https://localhost:44394/api/Personal_Information/getAccountSession')
+      .subscribe(
+        result => {
+          var res: any = result;
+          //Thu được dữ liệu
+          if (res != null) {
+            this.userLogin = res //Session lưu tài khoản
+            console.log(this.userLogin)
+            this.isLogin = true;
+            document.getElementById("btnShopingCast").style.visibility = "visible";
+            document.getElementById("btnlogin").style.display = "none";
+          }
+          //Không thu được dữ liệu
+          else {
+            alert(res.message);
+          }
+        },
+        error => {
+          alert("Create Cookie Server Error !!")
+        });
+
+  }
+  deleteAccountSession() {
     //post
-    this.http.post('https://localhost:44394/api/Personal_Information/checkUserLogin', this.data)
+    this.http.post('https://localhost:44394/api/Personal_Information/deleteAccountSession', true)
+      .subscribe(
+        result => {
+          var res: any = result;
+          //Thu được dữ liệu
+          if (res != null) {
+            console.log("Clear session")
+            this.isLogin = false;
+          }
+          //Không thu được dữ liệu
+          else {
+            alert(res.message);
+          }
+        },
+        error => {
+          //alert("Delete Cookie Server Error !!")
+        });
+  }
+  //Tooken
+  getAccountByTooken(token: String)
+  {
+     //Tooken
+     var bearerTooken = token;
+     //Chuyển sang header
+     var headers_object = new HttpHeaders().set("Authorization", "Bearer " + bearerTooken);
+     //Chọn option
+     const httpOptions = {
+         headers: headers_object
+       };
+       
+    //get
+    this.http.get<any>('https://localhost:44394/api/Personal_Information/getAccountByTooken', httpOptions)
     .subscribe(
       result => {
+        var res: any = result;
+        //Thu được dữ liệu
+        if (res != null) {
+          this.data.account = res.account;
+          this.data.password = res.password;
+        }
+        //Không thu được dữ liệu
+        else {
+          alert(res.message);
+        }
+      },
+      error => {
+        alert("Create Cookie Server Error !!")
+      });
+  }
+
+  //Login
+  checkLogin() {
+    //post
+    this.http.post('https://localhost:44394/api/Personal_Information/Login', this.data)
+      .subscribe(
+        result => {
           var res: any = result;
           //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
           //Thu được dữ liệu
           if (res != null) {
-              this.user = res;
-              if(this.user.data.resultAccount==true && this.user.data.resultPassword==true)
-              {
-                //Chỉ hiện thị giỏ hàng khi đã đăng nhập
-                document.getElementById("btnShopingCast").style.visibility = "visible";
-                document.getElementById("btnlogin").style.display = "none";
-                //Nếu check nhớ mật khẩu thì mới tạo cookie
-                if((document.getElementById("rememberLoginCheckBox") as HTMLInputElement).checked)
-                {
-                  //Tạo cookie
-                  this.createCookie(this.data.account, this.data.password);
-                }
-                console.log((document.getElementById("rememberLoginCheckBox") as HTMLInputElement).checked)
-                //Set text khi đăng nhập
-                this.userLogin = this.user.data.account;
-                this.toggleLoginModal();
-               
-              }
+            //this.user = res;
+            //Đã đăng nhập
+            this.isLogin = true
+            //Chỉ hiện thị giỏ hàng khi đã đăng nhập
+            document.getElementById("btnShopingCast").style.visibility = "visible";
+            document.getElementById("btnlogin").style.display = "none";
+            //Nếu check nhớ mật khẩu thì mới tạo cookie
+            if ((document.getElementById("rememberLoginCheckBox") as HTMLInputElement).checked == false) {
+              //Xóa cookie đã tạo trước đó
+              this.removeTokenCookie();
+            }
+            this.getAccountSession(); //Get session
+            this.toggleLoginModal();
+
           }
           //Không thu được dữ liệu
           else {
-              alert(res.message);
-              document.getElementById("btnlogin").style.visibility = "visible";
+            alert(res.message);
+            document.getElementById("btnlogin").style.visibility = "visible";
           }
-          
-      },
-      error => {
+
+        },
+        error => {
           alert("Server error!!")
-      });
+        })
   }
   toggleLoginModal() {
     $('#LoginModal').modal('hide');
   }
+
 }
 
 

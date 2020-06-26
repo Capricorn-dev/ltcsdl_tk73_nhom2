@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 declare var $: any;
 
 @Component({
@@ -44,8 +44,10 @@ export class ProductComponent {
     selectCategory: any = [];
     selectBrand: any = [];
 
+    tokenSession: String = "";
     constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
         this.searchProducts();
+        this.getTokenSession();
     }
     //Các hàm liên qua đến category
     //Tìm
@@ -105,11 +107,19 @@ export class ProductComponent {
     }
     //Tạo
     createProduct() {
+        //Tooken
+        var bearerTooken = this.tokenSession;
+        //Chuyển sang header
+        var headers_object = new HttpHeaders().set("Authorization", "Bearer " + bearerTooken);
+        //Chọn option
+        const httpOptions = {
+            headers: headers_object
+        };
         //Do khi input vào là string nên phải chuyển qua int
         this.product.unitsInStock = parseInt(this.product.unitsInStock, 10);
         this.product.discount = parseInt(this.product.discount, 10);
         //post
-        this.http.post('https://localhost:44394/api/Product/createProduct', this.product).subscribe(
+        this.http.post('https://localhost:44394/api/Product/createProduct', this.product, httpOptions).subscribe(
             result => {
                 var res: any = result;
                 //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
@@ -126,17 +136,31 @@ export class ProductComponent {
                 }
             },
             error => {
-                alert("Server error!!")
+                var err: any = error;
+                if (err.status == "401") {
+                    alert("Bạn vui lòng xác thực tài khoản.");
+                }
+                else {
+                    alert("Server error!!");
+                }
             });
     }
     //Sửa
     updateProduct() {
+        //Tooken
+        var bearerTooken = this.tokenSession;
+        //Chuyển sang header
+        var headers_object = new HttpHeaders().set("Authorization", "Bearer " + bearerTooken);
+        //Chọn option
+        const httpOptions = {
+            headers: headers_object
+        };
         //Do khi input vào là string nên phải chuyển qua int
         this.product.unitsInStock = parseInt(this.product.unitsInStock, 10);
         this.product.discount = parseInt(this.product.discount, 10);
         //post
         this.http.put('https://localhost:44394/api/Product/updateProductPut/'
-            + this.product.productId, this.product).subscribe(
+            + this.product.productId, this.product, httpOptions).subscribe(
                 result => {
                     var res: any = result;
                     //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
@@ -152,17 +176,31 @@ export class ProductComponent {
                     }
                 },
                 error => {
-                    alert("Server error!!")
+                    var err: any = error;
+                    if (err.status == "401") {
+                        alert("Bạn vui lòng xác thực tài khoản.");
+                    }
+                    else {
+                        alert("Server error!!");
+                    }
                 });
     }
     //Xóa
     id: String = "";
     deleteProduct(productId) {
+        //Tooken
+        var bearerTooken = this.tokenSession;
+        //Chuyển sang header
+        var headers_object = new HttpHeaders().set("Authorization", "Bearer " + bearerTooken);
+        //Chọn option
+        const httpOptions = {
+            headers: headers_object
+        };
         this.id = productId
         var check = confirm("Bạn có chắc chắn xóa sản phẩm này này ?"); //Tạo thông báo xác nhận xóa
         if (check == true) {
             //post
-            this.http.delete('https://localhost:44394/api/Product/deleteProduct/' + this.id).subscribe(
+            this.http.delete('https://localhost:44394/api/Product/deleteProduct/' + this.id, httpOptions).subscribe(
                 result => {
                     var res: any = result;
                     //Phần này dùng lấy dữ liệu không xài SingleRsp dưới Back-End
@@ -178,9 +216,38 @@ export class ProductComponent {
                     }
                 },
                 error => {
-                    alert("Server error!!")
+                    var err: any = error;
+                    if (err.status == "401") {
+                        alert("Bạn vui lòng xác thực tài khoản.");
+                    }
+                    else {
+                        alert("Server error!!");
+                    }
                 });
         }
+    }
+    getTokenSession() {
+        //get
+        this.http.get<any>('https://localhost:44394/api/Personal_Information/getTokenSession')
+            .subscribe(
+                result => {
+                    var res: String = result;
+                    //Thu được dữ liệu
+                    if (res != null) {
+                        this.tokenSession = res
+                        console.log(this.tokenSession)
+                    }
+                    //Chưa hề tạo cookie
+                    else {
+                        console.log("You don't have a token cookie")
+                    }
+
+                },
+                error => {
+                    var err: any = error;
+                    console.log(err);
+                    alert("Get Cookie API Error !!");
+                });
     }
     //Xem cụ thế
     specificInformation(index) {

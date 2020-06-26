@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CosmeticWebApp.BLL.Svc;
 using CosmeticWebApp.Common.Req;
 using CosmeticWebApp.DAL.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -22,14 +23,7 @@ namespace CosmeticWebApp.Controllers
         {
             _svc = new ProductSvc();
         }
-        [HttpPost("sendingAccountTypeSession")]
-        //Chạy ngay khi load web
-        public IActionResult Index()
-        {
-            var accountType = new AccountType { AccountTypeID = "TEST", Name = "TEST", Note = "TEST" };
-            HttpContext.Session.SetString("SessionAccountType", JsonConvert.SerializeObject(accountType)); //Chuyển thành file JSON
-            return Ok(accountType);
-        }
+        [Authorize]
         [HttpPost("createProduct")]
         public IActionResult CreateProduct(ProductReq req)
         {
@@ -42,18 +36,21 @@ namespace CosmeticWebApp.Controllers
             var result = _svc.SearchProduct(size, page, keyWord);
             return Ok(result);
         }
+        [Authorize]
         [HttpPut("updateProductPut/{id}")]
         public IActionResult UpdateProductPut(String id, ProductReq req)
         {
             var result = _svc.UpdateProduct(id, req);
             return Ok(result);
         }
+        [Authorize]
         [HttpPatch("updateProductPatch/{id}")]
         public IActionResult UpdateProductPatch(String id, ProductReq req)
         {
             var result = _svc.UpdateProduct(id, req);
             return Ok(result);
         }
+        [Authorize]
         [HttpDelete("deleteProduct/{id}")]
         public IActionResult DeleteProduct(String id)
         {

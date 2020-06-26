@@ -1,7 +1,10 @@
 ﻿using CosmeticWebApp.Common.Req;
 using CosmeticWebApp.DAL.Model;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -120,6 +123,58 @@ namespace CosmeticWebApp.DAL.Rep
             };
             //Trả về kết quả
             return result;
+        }
+
+        public Personal_Information AuthenticateUser(AccountReq req)
+        {
+            var res = _context.Personal_Information.FirstOrDefault(variable => variable.Account.Equals(req.Account) && variable.Pass.Equals(req.Password));
+            return res;
+        }
+
+        //Bị SQL Injection
+        //123456789' OR 1=1 --
+        //123456789' DROP TABLE Test --
+        public object LoginByADO(AccountReq req)
+        {
+            List<object> list = new List<object>();
+            var connectString = (SqlConnection)_context.Database.GetDbConnection();
+            if (connectString.State == System.Data.ConnectionState.Closed)
+            {
+                connectString.Open();
+            }
+            try
+            {
+                string strsql = "SELECT * FROM Personal_Information WHERE Account = '" + req.Account + "' AND Pass = '" + req.Password + "';";
+                SqlCommand cmd = new SqlCommand(strsql, connectString);
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+                SqlCommand command = new SqlCommand(strsql, connectString);
+                try
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var data = new
+                        {
+                            Account = reader[0],
+                            Pass = reader[1],
+                            LastName = reader[2],
+                            FristName = reader[3]
+                        };
+                        list.Add(data);
+                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return list;
         }
     }
 }
